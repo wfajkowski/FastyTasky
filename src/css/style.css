@@ -1,3 +1,78 @@
+html {
+    box-sizing: border-box;
+}
 body {
     background-color: rgb(115, 175, 138);
+    display: grid;
+    grid-template-areas: "nav list";
+    grid-template-columns: 27% 1fr;
+    margin: 0;
+    padding: 0;
+}
+header {
+    height: 100vh;
+    width: 100vw;
+    display: none;
+}
+.navigation {
+    grid-area: nav;
+    border: 1px solid black;
+    height: 100vh;
+    display: grid;
+    grid-template-areas: "user-section"
+                            "todo-list";
+    grid-template-rows: auto 1fr;
+}
+.user_section {
+    grid-area: user-section;
+    padding: 15px;
+    margin: 0 auto;
+    text-align: center;
+}
+.user_section img {
+    width: 50%;
+    min-width: 100px;
+    padding: 0;
+    position: relative;
+    margin-top: 0;
+}
+.user_section p {
+    font-size: 24px;
+    margin: auto;
+    margin-top: 10px;
+}
+.list {
+    list-style-type: none;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.list li {
+    border: 1px solid rgba(255, 255, 0, 0.315);
+    height: 8%;
+    width: 100%
+}
+.list li:hover {
+    background-color: aquamarine;
+}
+.todo_lists {
+    grid-area: todo-list;
+}
+.todo_list{
+    grid-area: list;
+    border: 1px solid black;
+    height: 100vh;
+    display: grid;
+    grid-template-areas: "graphic"
+                            "tasks";
+    grid-template-rows: 25% 1fr;
+}
+.graphic_background {
+    grid-area: graphic;
+    background-color: rgba(18, 83, 83, 0.507);
+}
+.todo_tasks {
+    grid-area: tasks;
+    background-color: rgba(255, 255, 255, 0.342);
 }
