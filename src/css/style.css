@@ -72,7 +72,96 @@ header {
     grid-area: graphic;
     background-color: rgba(18, 83, 83, 0.507);
 }
+
 .todo_tasks {
     grid-area: tasks;
     background-color: rgba(255, 255, 255, 0.342);
 }
+
+
+.tasks {
+    border: 1px solid black;
+    list-style-type: none;
+
+}
+
+.item-task {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    
+}
+
+.add-task_wrapper {
+    display: flex;
+    flex-direction: row;
+    margin: 20px 10px;
+  
+}
+#open-modal {
+    box-shadow: 0 5px 11px -2px rgba(0, 0, 0, 0.18), 0 4px 12px -7px rgba(0, 0, 0, 0.15);
+    border-radius: 50%;
+    width:39px;
+    height: 39px;
+    color: #fff;
+    font-size: 2.6em;
+    padding: 1px 0 0 0;
+    text-align: center;
+    display: block;
+    position: relative;
+    -webkit-transition: all .1s ease-out;
+    transition: all .1s ease-out;
+    background: #1ce;
+    float: left;
+  
+}
+
+.modal {
+    display: none;
+    margin: 6px 12px;;
+    height: 30px;
+    background: white;
+}
+
+#open-modal:active,
+#open-modal:focus,
+#open-modal:hover {
+  box-shadow: 0 0 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .28);
+  text-decoration: none;
+}
+
+.add-form {
+    
+    display: flex;
+    flex-direction: row;
+}
+#item {
+    flex-grow: 2;
+    border: none;
+}
+.submit-add {
+    background: #1ce;
+    color: white;
+    
+}
+
+
+.dialog{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+  }
+  .dialog__content {
+      position: relative;
+      background: white;
+      width: 320px;
+      height: 240px;
+      top: calc(50vh - 120px);
+      left: calc(50vw - 160px);
+  }

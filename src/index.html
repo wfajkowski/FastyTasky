@@ -8,6 +8,7 @@
     <meta name="description" content="ToDo application">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
 <body>
     <header class="logging_screen">
 
@@ -20,24 +21,76 @@
         </div>
         <div class="todo_lists">
             <ul class="list">
+                <!-- <li></li>
                 <li></li>
-                <li></li>
-                <li></li>
+                <li></li> -->
             </ul>
         </div>
 
     </nav>
-    <section class="todo_list">
-        <div class="graphic_background">
+    <section>
+        <div class="todo_list">
+            <div class="graphic_background">
+                <div class="todo__list__header">
+                    <div class="todo__list__header__date"></div>
+                </div>
+            </div>
+            <div class="todo_tasks">
+                <ul id="items" class="tasks">
+                    <!-- <li class="item-task">
+                
+                    <div class="item-task__content"></div>
+                    <div class="item-task__date"></div>
+                    <div class="item-task__member"></div>
+                    <button class="item-task__edit">x</button>
+                    <button class="item-task__remove">x</button>
+                    </li> -->
+                </ul>
+                <div class="add-task_wrapper">
+                    <button id="open-modal" type="button">
+
+                    </button>
+                    <div class="modal">
+                        <form class="add-form" action="">
+                            <input id="item" type="text" name="todo-form__title" >
+                            <input id="submit-add" type="submit" value="Submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="todo_tasks">
-            <ul class="tasks">
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-        </div>
+
+
+        <div class="dialog">
+    
+                <div class="dialog__content">
+                        <form action="" class="todo-form" id="addItem">
+                                <span class="dialog__close">x</span>
+                                <br>
+
+            
+                
+                        <label class="todo-form__label" for="todo-form__title">Type your FastyTasky ...</label><br>
+                        <input  type="text" name="todo-form__title" id="item"></input><br>
+
+                        <label class="todo-form__label" for="todo-form__description">Describe your FastyTasky ...</label>
+                        <textarea name="todo-form__description" id="" cols="14" rows="3"></textarea>
+
+
+                        <input type="submit" value="Submit">
+
+                    </form>
+                  
+                </div>
+                       
+            </div>
+
+
+
+
+
+
     </section>
 </body>
+
 </html>
