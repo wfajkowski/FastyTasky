@@ -7,10 +7,44 @@
     <title>FastyTasky</title>
     <meta name="description" content="ToDo application">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css"/>
 </head>
-
 <body>
-    Hello World!!!
-<script type="text/javascript" src="bundle.js"></script></body>
+    <header class="logging_screen">
 
+    </header>
+
+    <nav class="navigation">
+        <div class="user_section">
+            <img src="/src/img/64572.png" id="profile-picture">
+            <p>Username</p>
+        </div>
+        <div class="todo_lists">
+            <ul class="list" id="list">
+                <li>test 1<button class="btn"><i class="fa fa-trash"></i></button></li>
+                <li>test 2</li>
+                <li>test 3</li>
+            </ul>
+        </div>
+        <div id="adding_panel">
+            <input type="text" id="txt">
+            <button id="add_button">Add</button>
+        </div>
+    </nav>
+    <section class="todo_list">
+        <div class="graphic_background">
+        </div>
+        <div class="todo_tasks">
+            <ul class="tasks">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </section>
+<script type="text/javascript" src="bundle.js"></script></body>
+<script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"></script>
 </html>

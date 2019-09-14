@@ -36,6 +36,7 @@
   "dependencies": {
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
-    "mongoose": "^5.7.0"
+    "mongoose": "^5.7.0",
+    "simplebar": "^4.3.0-alpha.0"
   }
 }

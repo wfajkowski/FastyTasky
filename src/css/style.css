@@ -47,14 +47,39 @@ header {
     height: 100%;
     margin: 0;
     padding: 0;
+    overflow: scroll;
+    
 }
 .list li {
     border: 1px solid rgba(255, 255, 0, 0.315);
     height: 8%;
-    width: 100%
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-sizing: border-box;
+}
+.list li button {
+    position: absolute;
+    right: 5%;
+    opacity: 0;
 }
 .list li:hover {
     background-color: aquamarine;
+}
+.list li:hover button{
+    opacity: 1;
+}
+#adding_panel {
+    
+    display: grid;
+    grid-template-columns: 80% 20%;
+    height: 5vh;
+   
+}
+#adding_panel input {
+    width: 100%;
 }
 .todo_lists {
     grid-area: todo-list;
