@@ -13,7 +13,6 @@ const tasksList = document.querySelector('#items');
 
 const openBtn = document.querySelector('#open-modal')
 
-const dialog = document.querySelector('.dialog');
 
 
 
@@ -43,9 +42,10 @@ tasksList.addEventListener('click', deleteTask);
 //dodawanie elementu
 function addTask(event) {
     event.preventDefault();
-    event.stopPropagation();
+   // event.stopPropagation();
 
     let newTask = document.getElementById('item').value;
+  
 
   
 
@@ -77,9 +77,42 @@ function addTask(event) {
 
     tasksList.appendChild(li);
 
+    editTaskBtn.addEventListener('click', openDialog);
+   
+   function openDialog() {
+       const dialog = document.querySelector('.dialog');
+       dialog.style.display = 'block';
+
+
+//close dialog
+
+       const  dialogCloseBtn = document.querySelector('.dialog__close')
+
+       dialogCloseBtn .addEventListener('click', closeModal);
+       
+       function closeModal () {
+           dialog.style.display = 'none';
+       }
+
+       //close dialog outside
+   
+window.addEventListener('click', outsideClick);
+
+
+function outsideClick (event) {
+    if(event.target == dialog) {
+        dialog.style.display = 'none';
+    }
+}
 
 
 
+   }
+
+
+
+
+   
 
 };
 
@@ -96,6 +129,8 @@ function deleteTask(event) {
 
 
 
+
+
 }
 
 
@@ -103,23 +138,13 @@ function deleteTask(event) {
 
 
 
-// const editTaskBtn = document.querySelector('.item-task__edit');
-
-// editTaskBtn.addEventListener('click', openDialog);
-
-// function openDialog() {
-//     dialog.style.display = 'block';
-// }
 
 
 
-// closeBtn.addEventListener('click', closeModal);
 
 // window.addEventListener('click', outsideClick);
 
-// function closeModal () {
-//     dialog.style.display = 'none';
-// }
+
 // function outsideClick (event) {
 //     if(event.target == dialog) {
 //         dialog.style.display = 'none';
@@ -131,7 +156,7 @@ function deleteTask(event) {
 
 
 
-//const  closeBtn = document.querySelector('.modal__close')
+//const  dialogCloseBtn = document.querySelector('.dialog__close')
 
 //      function editTask(event) {
   //let editTask = document.getElementsByClassName('item-task-edit');
