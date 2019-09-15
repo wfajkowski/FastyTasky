@@ -1,4 +1,4 @@
-const Joi = require('@hapi/joi');
+const Joi = require('joi');
 const mongoose = require('mongoose');
 const {toDoTaskSchema} = require('./toDoTask');
 
@@ -10,15 +10,22 @@ const ToDoList = mongoose.model('ToDoLists', new mongoose.Schema({
         minlength: 3,
         maxlength: 50
     },
-    toDos: [toDoTaskSchema]
+    tasks: [toDoTaskSchema],
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+    }
 }));
 
 function validateToDoList(toDoList){
-    const schema = Joi.object({
-        title: Joi.string().min(3).max(50).required()
-    });
+    const schema = {
+        title: Joi.string().min(3).max(50).required(),
+        userId: Joi.objectId().required(),
+        tasks: Joi.array().items(Joi.string().min(3).max(50)).required()
+    };
 
-    return schema.validate(toDoList);
+    return Joi.validate(toDoList, schema);
 }
 
 exports.ToDoList = ToDoList;
