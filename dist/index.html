@@ -7,10 +7,40 @@
     <title>FastyTasky</title>
     <meta name="description" content="ToDo application">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-
 <body>
-    Hello World!!!
+    <header class="logging_screen">
+
+    </header>
+
+    <nav class="navigation">
+        <div class="user_section">
+            <img src="/src/img/64572.png" id="profile-picture">
+            <p>Username</p>
+        </div>
+        <div class="todo_lists">
+            <ul class="list" id="list">
+                <li>My day<button class="delete_btn" id="delete"><i class="fa fa-trash"></i></button></li>
+            </ul>
+        </div>
+        <div id="adding_panel">
+            <input type="text" id="txt">
+            <button id="add_button">Add</button>
+        </div>
+    </nav>
+    <section class="todo_list">
+        <div class="graphic_background">
+        </div>
+        <div class="todo_tasks">
+            <ul class="tasks">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </section>
 <script type="text/javascript" src="bundle.js"></script></body>
 
 </html>
