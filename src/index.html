@@ -13,22 +13,26 @@
     <header class="logging_screen">
 
     </header>
-
-    <nav class="navigation">
+    <div class="nav-container">
+    <nav class="goLeft" id="navigation">
         <div class="user_section">
             <img src="/src/img/64572.png" id="profile-picture">
             <p>Username</p>
         </div>
         <div class="todo_lists">
-            <ul class="list" id="list">
-                <li>My day<button class="delete_btn" id="delete"><i class="fa fa-trash"></i></button></li>
+            <ul class="list-group" id="items">
+                
             </ul>
         </div>
-        <div id="adding_panel">
-            <input type="text" id="txt">
-            <button id="add_button">Add</button>
-        </div>
+        <form id="adding_panel" class="form-inline mb-3">
+            <input type="text" class="form-control mr-2" id="item" placeholder="Add list...">
+            <input type="submit" class="btn btn-dark" value="add" id="add_button">
+        </form>
     </nav>
+    <button id="hamburger" class="turnRight">
+            <div></div>
+        </button>
+</div>
     <section class="todo_list">
         <div class="graphic_background">
         </div>

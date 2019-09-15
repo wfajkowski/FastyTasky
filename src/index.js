@@ -1,3 +1,4 @@
 import './css/style.css';
-import './js/addListItem.js';
+import './js/itemList.js';
+import './js/hamburger.js';
 
