@@ -52,17 +52,17 @@ header {
     background-color: #fff;
     border-radius: 4px;
     content: '';
-    height: 3px;
+    height: 2px;
     display: block;
     margin: 3px 0;
     transition: all .3s ease-in-out;
   }
   #hamburger:hover:before {
-    transform: translateY(6px) rotate(135deg);
+    transform: translateY(5px) rotate(135deg);
   }
   
   #hamburger:hover:after {
-    transform: translateY(-6px) rotate(-135deg);
+    transform: translateY(-5px) rotate(-135deg);
   }
   
   #hamburger:hover div {
@@ -96,11 +96,19 @@ header {
     padding: 0;
     position: relative;
     margin-top: 0;
+    background-color: #fff;
 }
 .user_section p {
     font-size: 24px;
     margin: auto;
     margin-top: 10px;
+}
+#profile-picture {
+    position: relative;
+}
+#profile_select{
+    position: absolute;
+    top: 0;
 }
 .list-group {
     list-style-type: none;
@@ -123,10 +131,14 @@ header {
 }
 .list-group li button {
     position: absolute;
-    right: 5%;
+    right: 3%;
     opacity: 0;
     height: 80%;
+    font-size: 18px;
     width: auto;
+}
+.list-group li .delete {
+    right: 15%;
 }
 
 .list-group li:hover {
