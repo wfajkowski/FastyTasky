@@ -1,8 +1,9 @@
-const express = require('express');
+const auth = require("../middleware/auth");
+const express = require("express");
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.send('Home Page');
-})
+router.get("/", auth, (req, res) => {
+  res.send("Server root");
+});
 
 module.exports = router;
