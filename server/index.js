@@ -3,6 +3,7 @@ const Joi = require("joi");
 Joi.objectId = require("joi-objectid")(Joi);
 const express = require("express");
 const app = express();
+const cors = require('cors');
 const mongoose = require("mongoose");
 const users = require("../routes/users");
 const homePage = require("../routes/home");
@@ -21,6 +22,7 @@ mongoose
   })
   .catch(err => console.error("Not connected!", err));
 
+app.use(cors());
 app.use(express.json());
 app.use("/", homePage);
 app.use("/api/auth", auth);
