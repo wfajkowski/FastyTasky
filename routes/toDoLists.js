@@ -1,74 +1,80 @@
 // const auth = require("../middleware/auth");
-const {ToDoList, validate} = require('../models/toDoList');
-const {toDoTask} = require('../models/toDoTask');
-const {User} = require('../models/user');
-const express = require('express');
+const { ToDoList, validate } = require("../models/toDoList");
+const { toDoTask } = require("../models/toDoTask");
+const { User } = require("../models/user");
+const express = require("express");
 const router = express.Router();
 
-
-router.get('/', async (req, res) => {
-    const toDoLists = await ToDoList.find();
-    res.send(toDoLists);
+router.get("/", async (req, res) => {
+  const toDoLists = await ToDoList.find();
+  res.send(toDoLists);
 });
 
-router.post('/', async (req, res) => {
-    const {error} = validate(req.body);
-    if (error) return res.status(400).send(error.details[0].message);
+router.post("/", async (req, res) => {
+  const { error } = validate(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
 
-    const user = await User.findById(req.body.userId)
-    // console.log('-------');
+  const user = await User.findById(req.body.userId);
+  // console.log('-------');
 
-    // console.log('-------');
-    const listOfTasks = new ToDoList({
-        title: req.body.title,
-        userId: user._id,
-        tasks: req.body.tasks.map(task => {
-            return {
-                name: task,
-                done: false
-            }
-        })
-    });
+  // console.log('-------');
+  const listOfTasks = new ToDoList({
+    title: req.body.title,
+    userId: user._id,
+    tasks: req.body.tasks.map(task => {
+      return {
+        name: task,
+        done: false
+      };
+    })
+  });
 
-    await listOfTasks.save();
-    res.send(listOfTasks);
+  await listOfTasks.save();
+  res.send(listOfTasks);
 });
 
+router.put("/:id", async (req, res) => {
+  const { error } = validate(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
 
-router.put('/:id', async (req, res) => {
-    const {error} = validate(req.body);
-    if (error) return res.status(400).send(error.details[0].message);
-
-    const user = await User.findById(req.body.userId)
-    const searchedList = await ToDoList.findByIdAndUpdate(req.params.id, 
-        {
-            title: req.body.title,
-            userId: user._id,
-            tasks: req.body.tasks.map(task => {
-                return {
-                    name: task,
-                    done: false
-                }
-            })
-        }, { new: true });
-    if(!searchedList) return res.status(404).send('ToDo list you are looking for does not exist.')
-    res.send(searchedList);
+  const user = await User.findById(req.body.userId);
+  const searchedList = await ToDoList.findByIdAndUpdate(
+    req.params.id,
+    {
+      title: req.body.title,
+      userId: user._id,
+      tasks: req.body.tasks.map(task => {
+        return {
+          name: task,
+          done: false
+        };
+      })
+    },
+    { new: true }
+  );
+  if (!searchedList)
+    return res
+      .status(404)
+      .send("ToDo list you are looking for does not exist.");
+  res.send(searchedList);
 });
 
-router.delete('/:id', async (req, res) => {
-    const searchedList = await ToDoList.findByIdAndRemove(req.params.id);
-    
-    if (!searchedList) return res.status(404).send('There is no ToDo list with this id in DB.');
+router.delete("/:id", async (req, res) => {
+  const searchedList = await ToDoList.findByIdAndRemove(req.params.id);
 
-    res.send(searchedList);
+  if (!searchedList)
+    return res.status(404).send("There is no ToDo list with this id in DB.");
+
+  res.send(searchedList);
 });
 
-router.get('/:id', async (req, res) => {
-    const searchedList = await ToDoList.findById(req.params.id);
+router.get("/:id", async (req, res) => {
+  const searchedList = await ToDoList.findById(req.params.id);
 
-    if (!searchedList) return res.status(404).send('There is no ToDo list with this id in DB.');
+  if (!searchedList)
+    return res.status(404).send("There is no ToDo list with this id in DB.");
 
-    res.send(searchedList);
+  res.send(searchedList);
 });
 
 module.exports = router;
