@@ -13,7 +13,102 @@ body {
 header {
     height: 100vh;
     width: 100vw;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    background-size: cover;
+    background-position: center;
+}
+header form {
+    width: 60%;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+}
+header input {
+    width: 100%;
+    height: 1.75rem;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.login_box, .login_clicked_box, .register_clicked_box {
+    width: 40%;
+    min-width: 300px;
+    height: 70%;
+    min-height: 450px;
+    background-color: rgba(255, 255, 255, 0.692);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: 15px;
+    box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.5);
+}
+.login_clicked_box, .register_clicked_box {
     display: none;
+    align-items: center;
+}
+.login_logo {
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login_logo img {
+    width: 50%;
+}
+.login_description {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    font-size: calc(8px + 1vw);
+}
+.login_buttons {
+    height: 30%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+button:focus {
+    outline: 0;
+}
+.login_clicked_box button, .register_clicked_box button {
+    margin-bottom: 60px;
+    box-sizing: border-box;
+}
+.login_buttons button, .login_clicked_box button, .register_clicked_box button {
+    box-sizing: border-box;
+    height: 3.125rem;
+    width: 40%;
+    border-radius: 15px;
+    border: none;
+    font-weight: bold;
+    font-size: 1.125rem;
+    text-align: center;
+    color: white;
+}
+.login_button {
+    background-color: rgb(55, 209, 114);
+}
+.login_button:hover {
+    background-color: rgba(255, 255, 255, 0.692);
+    border: 3px solid rgb(55, 209, 114);
+    color: rgb(55, 209, 114);
+}
+.register_button {
+    background-color: rgb(214, 24, 56);
+}
+.register_button:hover {
+    background-color: rgba(255, 255, 255, 0.692);
+    color: rgb(214, 24, 56);
+    border: 3px solid rgb(214, 24, 56);
 }
 .nav-container{
     grid-area: nav;
@@ -183,6 +278,9 @@ header {
 
 
 @media (max-width: 700px) {
+    .login_box, .login_clicked_box, .register_clicked_box {
+        width: 80%;
+    }
     #navigation {
         position: absolute;
         background-color: rgb(115, 175, 138);
