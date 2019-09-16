@@ -1,8 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lobster&display=swap');
+
 html {
     box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
 }
 body {
-    background-color: rgb(115, 175, 138);
+    background-color: #fff6f6;
     display: grid;
     grid-template-areas: "nav list";
     grid-template-columns: auto 1fr;
@@ -20,7 +25,7 @@ header {
     position: relative;
 }
 #navigation {
-    border: 1px solid black;
+    border-right: 1px solid black;
     height: 100vh;
     display: grid;
     grid-template-areas: "user-section"
@@ -38,10 +43,11 @@ header {
     top: 0;
     position: absolute;
     border: none;
-    background-color: rgb(98, 250, 27);
     right: 0;
     outline:none;
     display: none;
+    background-color: #fff6f6;
+    border: 1px solid rgba(0, 0, 0, 0.432);
   }
 #hamb3urger:focus{
     background-color: red;
@@ -49,7 +55,7 @@ header {
   #hamburger:after, 
   #hamburger:before, 
   #hamburger div {
-    background-color: #fff;
+    background-color: rgb(0, 0, 0);
     border-radius: 4px;
     content: '';
     height: 2px;
@@ -86,9 +92,12 @@ header {
   }
 .user_section {
     grid-area: user-section;
-    padding: 15px;
+    display: block;
     margin: 0 auto;
     text-align: center;
+    padding-bottom: 40px;
+    padding-top: 20px;
+    width: 100%;
 }
 .user_section img {
     width: 50%;
@@ -116,52 +125,83 @@ header {
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow: scroll;
+    /* overflow: scroll; */
     
 }
 .list-group li {
-    border: 1px solid rgba(255, 255, 0, 0.315);
-    height: 8%;
+    border-bottom: 1px solid rgba(48, 48, 48, 0.315);
+    height: 6vh;
     width: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
     position: relative;
     box-sizing: border-box;
 }
+.list-group p {
+    font-size: 20px;
+    margin-left: 10px;
+}
 .list-group li button {
     position: absolute;
+    background-color: rgba(71, 71, 71, 0);
+    border: none;
     right: 3%;
     opacity: 0;
-    height: 80%;
+    padding: 2px 6px;
+    height: 60%;
+    width: 20px;
     font-size: 18px;
     width: auto;
 }
 .list-group li .delete {
-    right: 15%;
+    right: 12%;
 }
 
 .list-group li:hover {
-    background-color: aquamarine;
+    background-color: #F5B7B1;
+}
+.list-group li button:focus {
+    outline: none;
 }
 .list-group li:hover button{
     opacity: 1;
 }
 #adding_panel {
     display: grid;
-    grid-template-columns: 80% 20%;
-    height: 5vh;
-   
+    grid-template-columns: 85% 15%;
+    height: 6vh;  
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    left: 0; 
 }
 #adding_panel input {
     width: 100%;
+    border: none;
+    font-size: 20px;
+    padding-left: 10px;
+    font-family: 'Quicksand', sans-serif;
+}
+#adding_panel input:focus {
+    outline: none;
+}
+#add_button {
+    width: 100%;
+    height: 100%;
+    font-size: 24px;
+    background-color: #ffffff;
+    border: none;
+    padding: 0;
+}
+#add_button:focus {
+    outline: none;
 }
 .todo_lists {
     grid-area: todo-list;
 }
 .todo_list{
     grid-area: list;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     height: 100vh;
     display: grid;
     grid-template-areas: "graphic"
@@ -174,8 +214,84 @@ header {
 }
 .todo_tasks {
     grid-area: tasks;
-    background-color: rgba(255, 255, 255, 0.342);
+    background-color: #fff6f6;
 }
+
+.profile-pic {
+    max-width: 200px;
+    max-height: 200px;
+    display: flex;
+    margin: auto;
+    align-content: center;
+}
+
+.file-upload {
+    display: none;
+}
+.circle {
+    border-radius: 50%;
+    overflow: hidden;
+    height: 180px;
+    width: 180px;
+    margin: auto;
+    border: 1px solid rgb(0, 0, 0);
+    background-image: url('https://www.jennstrends.com/wp-content/uploads/2013/10/bad-profile-pic-2-768x768.jpeg');
+    position: relative;
+    background-color: #fff;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#navigation img {
+    max-width: 100%;
+    height: auto;
+}
+.p-image {
+    background-color: rgba(43, 43, 43, 0.63);
+  position: relative;
+  margin-top: 190px;
+  padding: 10px 40px 30px 40px;
+  color: #acacac;
+  font-size: 22px;
+  transition: all .6s cubic-bezier(.175, .885, .32, 1.275);
+}
+.p-image:hover {
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+  margin-top: 80px;
+}
+.circle:hover .p-image {
+    margin-top: 130px;
+    transition: 1s;
+}
+.upload-button {
+  font-size: 1.2em;
+
+}
+.upload-button:hover {
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+  color: #999;
+}
+.graphic_background {
+    background-image: url('http://hdqwalls.com/wallpapers/8-bit-pixel-art-city-2o.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.graphic_background h1 {
+    /* font-family: 'Permanent Marker', cursive; */
+    font-family: 'Lobster', cursive;
+    font-size: 3rem;
+    color: #fff;
+    padding-top: 60px;
+    height: min-content;
+    border-bottom: #fff 3px dotted;
+}
+
+
+
 
 
 
@@ -185,8 +301,8 @@ header {
 @media (max-width: 700px) {
     #navigation {
         position: absolute;
-        background-color: rgb(115, 175, 138);
         left: -190px;
+        background-color: #fff6f6;
     }
     .nav-container {
         position: relative;
@@ -196,7 +312,6 @@ header {
        position: absolute;
        height: 30px;
        width: 30px;
-        background-color: rgb(0, 0, 0);
     }
     #hamburger.turnRight {
         left: 0px;
@@ -222,4 +337,49 @@ header {
         transition: 1s;
         left: -190px;
       }
+      .circle {
+        width: 120px;
+        height: 120px;
+    }
+    .p-image {
+        margin-top: 120px;
+        font-size: 16px;
+        padding: 10px 40px 30px 40px;
+    }
+    .circle:hover .p-image {
+        margin-top: 85px;
+    }
+    #add_button {
+        font-size: 18px;
+    }
+}
+@media (max-width: 1100px) {
+    .list-group li button {
+        right: 2%;
+        padding: 1px 2px;
+        margin: 0 1px;
+        height: 60%;
+        font-size: 17px;
+    }
+    .list-group li .delete {
+        right: 12%;
+    }
+    #adding_panel {
+        grid-template-columns: 80% 20%;
+    }
+}
+
+@media (min-width: 700px) and (max-width: 1300px){
+    .circle {
+        width: 140px;
+        height: 140px;
+    }
+    .p-image {
+        margin-top: 150px;
+        font-size: 20px;
+        padding: 10px 40px 30px 40px;
+    }
+    .circle:hover .p-image {
+        margin-top: 90px;
+    }
 }

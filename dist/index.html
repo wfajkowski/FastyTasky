@@ -16,11 +16,19 @@
     <div class="nav-container">
     <nav class="goLeft" id="navigation">
         <div class="user_section">
-            <div>
+            <!-- <div>
             <img src="/src/img/64572.png" id="profile-picture">
-            <!-- <input type="file" id="profile_select"> -->
+            <input type="file" id="profile_select">
+            </div> -->
+            <div class="circle">
+                    <img class="profile-pic" src="">
+                    <div class="p-image">
+                            <i class="fa fa-camera upload-button"></i>
+                            <input class="file-upload" type="file" accept="image/*"/>
+                        
+                        </div>
             </div>
-            <p>Username</p>
+        <p>Username</p>
         </div>
         <div class="todo_lists">
             <ul class="list-group" id="items">
@@ -29,7 +37,9 @@
         </div>
         <form id="adding_panel" class="form-inline mb-3">
             <input type="text" class="form-control mr-2" id="item" placeholder="Add list...">
-            <input type="submit" class="btn btn-dark" value="add" id="add_button">
+            <button type="submit" class="btn btn-dark" value="add" id="add_button">
+                <i class="fa fa-plus"></i>
+            </button>
         </form>
     </nav>
     <button id="hamburger" class="turnRight">
