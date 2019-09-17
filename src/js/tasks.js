@@ -1,5 +1,9 @@
 const form = document.querySelector(".add-task__form");
 const tasksList = document.querySelector(".tasks");
+
+
+
+// array with data, to fetch
 const itemsTask = [];
 let li =  document.querySelector(".task");
 
@@ -13,13 +17,14 @@ let li =  document.querySelector(".task");
 function addTask(event) {
   event.preventDefault();
   const name = this.querySelector("[name = item]").value;
+  // single task "item", usefull in backend setup for db
   const item = {
     name,
     done: false
+    //should add in future id, date .....
 
   };
   itemsTask.push(item);
-
   populateList(itemsTask, tasksList);
 
 
@@ -86,7 +91,7 @@ let removeTaskBtn = document.createElement("button");
 
 function deleteTask(event) {
 
-  // let li = document.querySelector('.single-task');
+
   
    if (event.target.classList.contains("item-task__remove")) {
      if (confirm("Are You Sure")) {
@@ -96,7 +101,7 @@ function deleteTask(event) {
       console.log(li);
     
 
-     //  itemsTask.removeChild(document.getElemem);
+ 
        let index = itemsTask.indexOf(item.textContent);
        itemsTask.splice(index,1);
        console.log(itemsTask);
@@ -105,11 +110,7 @@ function deleteTask(event) {
       
    }
 
- 
  }
-
-
-
 
 
 //################################
