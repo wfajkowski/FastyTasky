@@ -167,7 +167,6 @@ header {
 }
 
 
-<<<<<<< HEAD
 .tasks {
     border: 1px solid black;
     list-style-type: none;
@@ -254,7 +253,6 @@ header {
       top: calc(50vh - 120px);
       left: calc(50vw - 160px);
   }
-=======
 
 
 
@@ -300,4 +298,3 @@ header {
         left: -190px;
       }
 }
->>>>>>> origin/master
