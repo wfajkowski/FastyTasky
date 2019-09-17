@@ -90,6 +90,7 @@ registerButton.addEventListener('click', () => {
                 },
                 body: JSON.stringify(requestBody)
             });
+            console.log(response.headers);
             //const token =;
             //localStorage.setItem('x-auth-token', token);
             //main_view();
