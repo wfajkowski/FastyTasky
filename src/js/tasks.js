@@ -4,6 +4,9 @@ const itemsTask = [];
 
 //W  momencie usunięcia elementu i dodania kolejnego stary element renederuje się razem z nowym,
 //natomiast tablica itemsTask, działa poprawnie
+let li =  document.querySelector(".task");
+
+
 
 
 
@@ -21,7 +24,6 @@ function addTask(event) {
   itemsTask.push(item);
 
   populateList(itemsTask, tasksList);
-  console.log(itemsTask);
 
   this.reset();
 }
@@ -36,7 +38,8 @@ function populateList(tasks = [], tasksList) {
   tasksList.innerHTML = tasks
     .map((item, i) => {
       return `
-    <li class="single-task">
+    <li class=" task single-task${i}">
+  
         <input type="checkbox" data-index=${i} id=item${i}" ${
         item.done ? "checked" : ""
       } />
@@ -47,39 +50,68 @@ function populateList(tasks = [], tasksList) {
     `;
     })
     .join("");
+  
+  
+
+
+ 
 }
 tasksList.addEventListener("click", deleteTask);
 tasksList.addEventListener("click", editItem);
 form.addEventListener("submit", addTask);
 
+
+
+
+//##############################
+//########      DONE TASK    ################
+//###############################
 function toggleDone(event) {
   if (!event.target.matches("input")) return;
   const el = event.target;
   const index = el.dataset.index;
   itemsTask[index].done = !itemsTask[index].done;
-
   populateList(itemsTask, tasksList);
+
+
 }
 
 tasksList.addEventListener("click", toggleDone);
-
+populateList(itemsTask, tasksList);
 
 
 //################################
 // #########         REMOVE TASK      #############
 //#################################
 let removeTaskBtn = document.createElement("button");
+
 removeTaskBtn.className = "item-task__remove";
 li.appendChild(removeTaskBtn);
 function deleteTask(event) {
-  if (event.target.classList.contains("item-task__remove")) {
-    if (confirm("Are You Sure")) {
-      let li = event.target.parentElement;
-      tasksList.removeChild(li);
-    }
-  }
-  console.log(itemsTask);
-}
+
+  // let li = document.querySelector('.single-task');
+  
+   if (event.target.classList.contains("item-task__remove")) {
+     if (confirm("Are You Sure")) {
+       let li = event.target.parentElement;
+       tasksList.removeChild(li);
+  
+      console.log(li);
+    
+
+     //  itemsTask.removeChild(document.getElemem);
+       let index = itemsTask.indexOf(item.textContent);
+       itemsTask.splice(index,1);
+       console.log(itemsTask);
+    
+     }
+      
+   }
+
+ 
+ }
+
+
 
 
 
@@ -96,6 +128,7 @@ function editItem(event) {
           itemsTask.push(li.textContent);
 
           li.contentEditable = "false";
+          console.log(itemsTask);
         }
       });
     }
