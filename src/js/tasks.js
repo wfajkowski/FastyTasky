@@ -27,7 +27,7 @@ function addTask(event) {
   itemsTask.push(item);
   populateList(itemsTask, tasksList);
 
-
+console.log(itemsTask);
   this.reset();
 }
 
