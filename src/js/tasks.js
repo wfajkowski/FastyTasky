@@ -21,6 +21,7 @@ function addTask(event) {
   itemsTask.push(item);
 
   populateList(itemsTask, tasksList);
+  console.log(itemsTask);
 
   this.reset();
 }
@@ -77,7 +78,7 @@ function deleteTask(event) {
       tasksList.removeChild(li);
     }
   }
-  console.log(tasksList);
+  console.log(itemsTask);
 }
 
 
