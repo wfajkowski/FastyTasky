@@ -15,11 +15,14 @@ function addItem(e){
     e.preventDefault();
     var newItem = document.getElementById('item').value;
     var li = document.createElement('li');
+    var liIcon = document.createElement('i');
+    liIcon.className = 'fa fa-bolt';
     li.className = 'list-group-item';
+    li.appendChild(liIcon);
     var liText = document.createElement('p');
     liText.className = 'liText';
-    liText.appendChild(document.createTextNode(newItem));
     li.appendChild(liText);
+    liText.appendChild(document.createTextNode(newItem));
     var deleteBtn = document.createElement('button');
     var deleteIcon = document.createElement('i');
     var editBtn = document.createElement('button');
