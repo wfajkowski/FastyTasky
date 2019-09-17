@@ -16,6 +16,7 @@
     <div class="nav-container">
     <nav class="goLeft" id="navigation">
         <div class="user_section">
+<<<<<<< HEAD
             <div class="circle">
                 <img class="profile-pic" src="">
                 <div class="p-image">
@@ -26,15 +27,28 @@
         <p>Username</p>
         </div>
         <div class="todo-lists">
+=======
+            <div>
+            <img src="/src/img/64572.png" id="profile-picture">
+            <!-- <input type="file" id="profile_select"> -->
+            </div>
+            <p>Username</p>
+        </div>
+        <div class="todo_lists">
+>>>>>>> 3687073544b5075aa74b77d653242d198e0def42
             <ul class="list-group" id="items">
                 
             </ul>
         </div>
         <form id="adding_panel" class="form-inline mb-3">
             <input type="text" class="form-control mr-2" id="item" placeholder="Add list...">
+<<<<<<< HEAD
             <button type="submit" class="btn btn-dark" value="add" id="add_button">
                 <i class="fa fa-plus"></i>
             </button>
+=======
+            <input type="submit" class="btn btn-dark" value="add" id="add_button">
+>>>>>>> 3687073544b5075aa74b77d653242d198e0def42
         </form>
     </nav>
     <button id="hamburger" class="turnRight">
@@ -46,12 +60,33 @@
             <h1>FastyTasky!</h1>
         </div>
         <div class="todo_tasks">
-            <ul class="tasks">
+            <ul class="tasks" id="taskList">
+                <!-- <li></li>
                 <li></li>
                 <li></li>
-                <li></li>
-                <li></li>
+                <li></li> -->
             </ul>
+     
+                       <div class="add_task">
+                <form class="add-task__form" action="">
+                        <input  id="item" 
+                                type="text" 
+                                name="item" 
+                                placeholder="Item Name" 
+                                minlength="3"
+                                maxlength="50"
+                                required>
+                        <button  id="submit-add" 
+                                type="submit">
+                                <i class="fa fa-plus"></i>
+                                </button>
+                </form> 
+
+            </div>
+    <div class="add_task">
+    
+            </div>
+         
         </div>
     </section>
     

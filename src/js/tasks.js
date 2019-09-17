@@ -30,6 +30,10 @@ function addTask(event) {
   itemsTask.push(item);
   populateList(itemsTask, tasksList);
 
+<<<<<<< HEAD
+=======
+console.log(itemsTask);
+>>>>>>> 3687073544b5075aa74b77d653242d198e0def42
   this.reset();
 }
 
