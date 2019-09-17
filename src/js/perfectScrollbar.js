@@ -1,8 +1,7 @@
 import PerfectScrollbar from 'perfect-scrollbar';
 const ps = new PerfectScrollbar('.todo-lists', {
-    wheelSpeed: .5,
+    wheelSpeed: .4,
     maxScrollbarLength: 100,
-    minScrollbarLength: 20,
-    swipeEasing: false
+    minScrollbarLength: 20
 });
 ps.update();
