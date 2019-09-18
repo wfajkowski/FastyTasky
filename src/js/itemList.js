@@ -1,11 +1,9 @@
-import { createList, deleteList } from "./userLists";
+import { createList, deleteList, editList } from "./userLists";
 
 let form = document.getElementById('adding_panel');
 let itemList = document.getElementById('items');
 let deleteButton = document.getElementsByClassName('delete');
 let editButton = document.getElementsByClassName('edit');
-
-let tab = [];
 
 form.addEventListener('submit', addItem);
 itemList.addEventListener('click', removeItem);
@@ -36,7 +34,6 @@ function addItem(e){
     editBtn.appendChild(editIcon);
     li.appendChild(editBtn);
     itemList.appendChild(li);
-    tab.push(li.textContent);
     //  console.log(tab)
     //  console.log(tab.indexOf(newItem))
     let x = document.getElementById('item');
@@ -50,9 +47,6 @@ function addItem(e){
         let li = e.target.parentElement;
         deleteList(li);
         itemList.removeChild(li);
-        let index = tab.indexOf(li.textContent);
-        tab.splice(index, 1);
-        //  console.log(tab)
       } 
     } else if(e.target.classList.contains('fa-trash')){
       if(confirm('Are You Sure?')){
@@ -60,8 +54,6 @@ function addItem(e){
         let li = buttonClick.parentElement;
         deleteList(li);
         itemList.removeChild(li);
-      let index = tab.indexOf(li.textContent);
-      tab.splice(index, 1);
       }
     }
   }
@@ -69,30 +61,22 @@ function addItem(e){
     if(e.target.classList.contains('edit')){
       if(confirm('Do you want to edit this item?')){
       let li = e.target.parentElement;
-      let index = tab.indexOf(li.textContent);
-      tab.splice(index, 1);
-      // console.log(tab);
       li.contentEditable = 'true';
       window.addEventListener('keypress', (e)=> {
         if (e.keyCode == 13) {
-          tab.push(li.textContent);
-          // console.log(tab);
           li.contentEditable = 'false';  
+          editList(li);
         }}
       )} 
     } else if(e.target.classList.contains('fa-gear')){
       if(confirm('Do you want to edit this item?')){
         let buttonClick = e.target.parentElement;
         let li = buttonClick.parentElement;
-        let index = tab.indexOf(li.textContent);
-        tab.splice(index, 1);
-        // console.log(tab);
         li.contentEditable = 'true';
         window.addEventListener('keypress', (e)=> {
           if (e.keyCode == 13) {
-            tab.push(li.textContent);
-            // console.log(tab);
-            li.contentEditable = 'false';  
+            li.contentEditable = 'false'; 
+            editList(li);
         }}
       )}
     }}

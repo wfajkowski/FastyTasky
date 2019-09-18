@@ -348,6 +348,7 @@ header {
     width: 100%; 
     font-size: 15px;
     margin-top: 10px;
+    padding-bottom: 2px;
 }
 .task p {
     font-size: 15px;
@@ -422,7 +423,7 @@ header {
 }
 .tasks-container {
     height: 98.5%;
-    margin-top: 7px;
+    margin-top: 5px;
 }
 .todo_tasks{
     /* margin-top: 5px; */

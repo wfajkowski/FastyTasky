@@ -79,6 +79,29 @@ export const deleteList = async (element) => {
   }
 }
 
+
+
+export const editList = async (element) => {
+  const listTitle = element.textContent;
+  const request = new Request("http://localhost:3000/api/my_lists/" + element.dataset.id, {
+    method: "PUT",
+    body: JSON.stringify({
+      title: listTitle,
+      userId: "5d7e412fb184593eb44fb240",
+      tasks: []
+    }),
+    headers: { 
+      "Content-Type": "application/json" 
+    }
+  });
+  try {
+    const data = await fetch(request);
+    const editedData = await data.json();
+    return editedData;
+  } catch (err) {
+    console.log("Error:", err.message);
+  }
+}
 export const init = () => {
   getLists();
 };
