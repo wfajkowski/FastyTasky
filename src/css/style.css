@@ -5,9 +5,10 @@
 html {
     box-sizing: border-box;
     font-family: 'Quicksand', sans-serif;
+    
 }
 body {
-    background-color: #5b4c69;
+    /* background-color: #604e70; */
     display: grid;
     grid-template-areas: "nav list";
     grid-template-columns: auto 1fr;
@@ -22,10 +23,13 @@ header {
 }
 .nav-container{
     grid-area: nav;
+    height: 100vh;
+    margin: 0;
     position: relative;
+    margin-right: 5px;
 }
 #navigation {
-    border-right: 1px solid black;
+    /* border-right: 1px solid black; */
     height: 100vh;
     display: grid;
     grid-template-areas: "user-section"
@@ -36,13 +40,14 @@ header {
     width: 22vw;
     position: relative;
     overflow: hidden;
+    border-radius: 10px;
 }
 .todo-lists {
     height: 100%;
     position: relative;
     overflow: hidden;
-    background-color: #78648b;
-}
+    /* background-color: #78648b; */
+    background-image: linear-gradient(to bottom, #69557c, #705c84, #77628b, #7f6993, #86709b, #86709b, #86709b, #86709b, #7f6993, #77628b, #705c84, #69557c);}
 
 #hamburger {
     padding: 5px;
@@ -54,7 +59,6 @@ header {
     outline:none;
     display: none;
     background-color: #fff6f6;
-    border: 1px solid rgba(0, 0, 0, 0.432);
   }
 #hamb3urger:focus{
     background-color: red;
@@ -105,6 +109,7 @@ header {
     padding-bottom: 35px;
     padding-top: 20px;
     width: 100%;
+    background-image: linear-gradient(to bottom, #5e4c6f, #68557a, #735e86, #7d6891, #88719d);
 }
 .user_section img {
     width: 50%;
@@ -137,7 +142,6 @@ header {
     height: 100%;
     margin: 0;
     padding: 0;
-    
 }
 .list-group p {
     font-size: 20px;
@@ -164,21 +168,24 @@ header {
 }
 
 .list-group li:hover {
-    background-color: #cc6b8e;
+    /* background-color: #cc6b8e; */
+    background-image: linear-gradient(#cc6b8e, #ec8e9e);
 }
 .list-group li button:focus {
     outline: none;
 }
 .list-group li button:hover {
     color: rgb(201, 201, 201);
+    cursor: pointer;
 }
 .list-group li:hover button{
     opacity: 1;
 }
-.list-group li {
+.list-group li,
+.task {
     border-bottom: 1px solid rgba(255, 255, 255, 0.315);
     width: 100%;
-    background-color: #78648b;
+    background-color: #88719d;
     display: grid;
     margin: 0;
     grid-template-columns: auto 1fr min-content min-content;
@@ -203,6 +210,7 @@ header {
     padding-left: 10px;
     font-family: 'Quicksand', sans-serif;
     background-color: #69557c;
+    color: #fff;
 }
 #adding_panel input::placeholder {
     color: #fff;
@@ -214,23 +222,26 @@ header {
     width: 100%;
     height: 100%;
     font-size: 24px;
-    background-color: #5b4c69;
+    background-color: #69557c;
     border: none;
     padding: 0;
     color: #fff;
 }
-#add_button:focus {
+#add_button:focus,
+.add_task button {
     outline: none;
 }
-#add_button:hover {
+#add_button:hover,
+.add_task button {
     color: rgb(201, 201, 201);
+    cursor: pointer;
 }
 .todo_list{
     grid-area: list;
     display: grid;
     grid-template-areas: "graphic"
                             "tasks";
-    grid-template-rows: 30% 1fr;
+    grid-template-rows: 30% 70%;
     height: 100vh;
 }
 .graphic_background {
@@ -240,7 +251,7 @@ header {
 
 .todo_tasks {
     grid-area: tasks;
-    background-color: #fff6f6;
+    background-image: linear-gradient(#cc6b8e, #ffbda3);
 }
 
 .profile-pic {
@@ -260,7 +271,6 @@ header {
     height: 180px;
     width: 180px;
     margin: auto;
-    /* border: 1px solid rgba(0, 0, 0, 0.568); */
     box-shadow: 0 0 0 3px #5b4c69,
                 0 0 0 7px #ffffff,
                 0 0 0 10px #5b4c69,
@@ -300,6 +310,7 @@ header {
 .upload-button:hover {
   transition: all .6s cubic-bezier(.175, .885, .32, 1.275);
   color: rgb(201, 201, 201);
+  cursor: pointer;
 }
 .graphic_background {
     background-image: url('http://hdqwalls.com/wallpapers/8-bit-pixel-art-city-2o.jpg');
@@ -309,119 +320,194 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    box-sizing: content-box;
+    border-bottom: 1px solid rgb(0, 0, 0);
+    margin-top: 0;
+    border-radius: 10px;
+    height: 100%;
 }
 .graphic_background h1 {
     /* font-family: 'Permanent Marker', cursive; */
     font-family: 'Lobster', cursive;
     font-size: 3rem;
     color: #fff;
-    padding-top: 60px;
+    padding: 60px 25px 0 25px;
     height: min-content;
     border-bottom: #fff 3px dotted;
+    text-shadow:
+    1px  1px 2px rgba(0, 0, 0, 0.5),
+    1px -1px 2px rgba(0, 0, 0, 0.5),
+   -1px  1px 2px rgba(0, 0, 0, 0.5),
+   -1px -1px 2px rgba(0, 0, 0, 0.5);
 }
 
-
+.task {
+    border-bottom: 1.5px solid rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    background-color: #ec0c0c00; 
+    width: 100%; 
+    font-size: 15px;
+    margin-top: 10px;
+}
+.task p {
+    font-size: 15px;
+    margin-left: 10px;
+    margin: 5px;
+}
+.task:hover {
+    background-color: #e0e0e057;
+}
 .tasks {
-    border: 1px solid black;
-    list-style-type: none;
-
+    padding: 0px 20px 0 20px;
+    position: relative;
+    margin: 10px 0;
+    overflow: hidden;
+    margin: 0;
+}
+.task button {
+    background-color: rgba(145, 145, 145, 0);
+    border: none;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+}
+.task button:hover {
+    color: rgb(201, 201, 201);
 }
 
-.item-task {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: center;
-    
+.todo_list {
+    overflow: hidden;
 }
-
-.add-task_wrapper {
-    display: flex;
-    flex-direction: row;
-    margin: 20px 10px;
-  
+.add_task {
+    margin: 10px 20px 0 20px;
+    padding: 0;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    position: relative;
+    font-size: 10px;
+    background-color: #cc6b8e;
 }
-#open-dialog {
-    box-shadow: 0 5px 11px -2px rgba(0, 0, 0, 0.18), 0 4px 12px -7px rgba(0, 0, 0, 0.15);
-    border-radius: 50%;
-    width:39px;
-    height: 39px;
+.add_task input {
+    margin-left: 20px;
+    width: 100%;
+    font-size: 15px;
+    padding: 0;
+    border: none;
+    outline: none;
+    height: 40px;
     color: #fff;
-    font-size: 2.6em;
-    padding: 1px 0 0 0;
-    text-align: center;
+    background-color: rgba(255, 255, 255, 0);
+    font-family: 'Quicksand', sans-serif;
+}
+.add_task input::placeholder {
+    color: #fff;
+}
+.add_task input:active {
+    background-color: rgba(255, 255, 255, 0);
+}
+.add_task button {
+    position: absolute;
+    height: 100%;
+    width: 30px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    top: 0;
+    right: 0;
+    margin: 0;
+    color: rgb(255, 255, 255);
+}
+.task-text {
+    font-size: 15px;
+}
+.tasks-container {
+    height: 98.5%;
+    margin-top: 7px;
+}
+.todo_tasks{
+    /* margin-top: 5px; */
+    border-radius: 10px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+
+
+
+
+
+
+
+
+.container {
     display: block;
     position: relative;
-    -webkit-transition: all .1s ease-out;
-    transition: all .1s ease-out;
-    background: #1ce;
-    float: left;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    margin: auto 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
   
-}
-
-.dialog {
-   /* display: none; */
-    margin: 6px 12px;;
-    height: 30px;
-    background: white;
-}
-
-#open-dialog:active,
-#open-dialog:focus,
-#open-dialog:hover {
-  box-shadow: 0 0 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .28);
-  text-decoration: none;
-}
-
-.add-form {
-    
-    display: flex;
-    flex-direction: row;
-}
-#item {
-    flex-grow: 2;
-    border: none;
-}
-.submit-add {
-    background: #1ce;
-    color: white;
-    
-}
-
-
-.modal{
-    /* display: none; */
-    position: fixed;
+  .container input {
+    position: relative;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
     z-index: 1;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.5);
   }
-  .modal__content {
-      position: relative;
-      background: white;
-      width: 320px;
-      height: 240px;
-      top: calc(50vh - 120px);
-      left: calc(50vw - 160px);
+  .checkmark {
+    position: absolute;
+    left: 5px;
+    bottom: -2px;
+    height: 20px;
+    width: 20px;
+    background-color: rgba(238, 238, 238, 0);
+    border-radius: 50%;
+    border: 1px solid #ffffff;
   }
-
-
-
-
-
-
+  .container:hover input ~ .checkmark {
+    background-color: #b598cf;
+  }
+  .container input:checked ~ .checkmark {
+    background-color: #ffffff;
+  }
+  
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    border: 1px solid #5b4c69;
+  }
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  .container .checkmark:after {
+    left: 7px;
+    top: 4.5px;
+    width: 4px;
+    height: 8px;
+    border: 1px solid #5b4c69;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
 
 @media (max-width: 700px) {
     #navigation {
         position: absolute;
         left: -210px;
+        z-index: 2;
         background-color: #5b4c69;
     }
     .nav-container {
         position: relative;
+        margin: 0;
     }
     .list-group p {
         font-size: 16px;
@@ -432,6 +518,7 @@ header {
        height: 30px;
        background-color: #5b4c69;
        width: 30px;
+       
     }
     #hamburger.turnRight {
         left: 0px;
@@ -440,6 +527,9 @@ header {
     #hamburger.turnLeft {
         left: 181px;
         z-index: 5;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.719);
+       border-left: 1px solid rgba(255, 255, 255, 0.719);
+       background-color: #705e80;
     }
     #hamburger:after, 
   #hamburger:before, 
