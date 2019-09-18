@@ -13,7 +13,7 @@ import {main_view} from './js/loginBox.js';
 const token = localStorage.getItem('x-auth-token');
 if(token){
     main_view();
+    init();
     //tymczasowo usuwany po nowym wczytaniu - później przy wylogowaniu
     localStorage.removeItem('x-auth-token');
 }
-init();

@@ -22,7 +22,7 @@ mongoose
   })
   .catch(err => console.error("Not connected!", err));
 
-app.use(cors());
+// app.use(cors());
 app.use(cors({
   exposedHeaders: ['Content-Length', 'x-auth-token'],
 }));
