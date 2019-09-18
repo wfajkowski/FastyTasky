@@ -1,11 +1,11 @@
+import { createList, deleteList } from "./userLists";
 
+let form = document.getElementById('adding_panel');
+let itemList = document.getElementById('items');
+let deleteButton = document.getElementsByClassName('delete');
+let editButton = document.getElementsByClassName('edit');
 
-form = document.getElementById('adding_panel');
-itemList = document.getElementById('items');
-deleteButton = document.getElementsByClassName('delete');
-editButton = document.getElementsByClassName('edit');
-
-tab = [];
+let tab = [];
 
 form.addEventListener('submit', addItem);
 itemList.addEventListener('click', removeItem);
@@ -40,6 +40,7 @@ function addItem(e){
     //  console.log(tab)
     //  console.log(tab.indexOf(newItem))
     let x = document.getElementById('item');
+    createList();
     x.value = '';
   }
 
@@ -47,6 +48,7 @@ function addItem(e){
     if(e.target.classList.contains('delete')){
       if(confirm('Are You Sure?')){
         let li = e.target.parentElement;
+        deleteList(li);
         itemList.removeChild(li);
         let index = tab.indexOf(li.textContent);
         tab.splice(index, 1);
@@ -56,6 +58,7 @@ function addItem(e){
       if(confirm('Are You Sure?')){
         let buttonClick = e.target.parentElement;
         let li = buttonClick.parentElement;
+        deleteList(li);
         itemList.removeChild(li);
       let index = tab.indexOf(li.textContent);
       tab.splice(index, 1);
