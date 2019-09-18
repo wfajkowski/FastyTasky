@@ -1,95 +1,124 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>FastyTasky</title>
-    <meta name="description" content="ToDo application">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-<body>
+    <meta name="description" content="ToDo application" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
     <header class="logging_screen">
-
-    </header>
-    <div class="nav-container">
-    <nav class="goLeft" id="navigation">
-        <div class="user_section">
-<<<<<<< HEAD
-            <div class="circle">
-                <img class="profile-pic" src="">
-                <div class="p-image">
-                    <i class="fa fa-camera upload-button"></i>
-                    <input class="file-upload" type="file" accept="image/*"/>
-                </div>
-            </div>
-        <p>Username</p>
+      <div class="login_box">
+        <div class="login_logo"><img src="src/img/logo.png" alt="logo" /></div>
+        <div class="login_description">
+          <p>Meet your new favourite To-Do app!</p>
         </div>
-        <div class="todo-lists">
-=======
-            <div>
-            <img src="/src/img/64572.png" id="profile-picture">
-            <!-- <input type="file" id="profile_select"> -->
-            </div>
-            <p>Username</p>
+        <div class="login_buttons">
+          <button class="login_button">Sign In</button>
+          <button class="register_button">Register</button>
         </div>
-        <div class="todo_lists">
->>>>>>> 3687073544b5075aa74b77d653242d198e0def42
-            <ul class="list-group" id="items">
-                
-            </ul>
-        </div>
-        <form id="adding_panel" class="form-inline mb-3">
-            <input type="text" class="form-control mr-2" id="item" placeholder="Add list...">
-<<<<<<< HEAD
-            <button type="submit" class="btn btn-dark" value="add" id="add_button">
-                <i class="fa fa-plus"></i>
-            </button>
-=======
-            <input type="submit" class="btn btn-dark" value="add" id="add_button">
->>>>>>> 3687073544b5075aa74b77d653242d198e0def42
+      </div>
+      <div class="login_clicked_box">
+        <h1>Sign in</h1>
+        <form id="login_form">
+          <p>E-mail:</p>
+          <input type="text" name="email" autocomplete="off" />
+          <p>Password</p>
+          <input type="password" name="password" autocomplete="off" />
         </form>
-    </nav>
-    <button id="hamburger" class="turnRight">
-            <div></div>
+        <button class="login_button" type="submit" form="login_form">
+          Sign In
         </button>
-</div>
+      </div>
+      <div class="register_clicked_box">
+        <h1>Register</h1>
+        <form id="register_form">
+          <p>Login:</p>
+          <input type="text" name="login" />
+          <p>E-mail:</p>
+          <input type="text" name="email" />
+          <p>Password</p>
+          <input type="password" name="password" />
+        </form>
+        <button class="register_button" type="submit" form="register_form">
+          Register
+        </button>
+      </div>
+    </header>
+    <div>
+      <div class="nav-container">
+        <nav class="goLeft" id="navigation">
+          <div class="user_section">
+            <div class="circle">
+              <img class="profile-pic" src="" />
+              <div class="p-image">
+                <i class="fa fa-camera upload-button"></i>
+                <input class="file-upload" type="file" accept="image/*" />
+              </div>
+            </div>
+            <p id="login_username">Username</p>
+          </div>
+          <div class="todo-lists">
+            <ul class="list-group" id="items"></ul>
+          </div>
+          <form id="adding_panel" class="form-inline mb-3">
+            <input
+              type="text"
+              class="form-control mr-2"
+              id="item"
+              placeholder="Add list.."
+              required
+            />
+            <button
+              type="submit"
+              class="btn btn-dark"
+              value="add"
+              id="add_button"
+            >
+              <i class="fa fa-plus"></i>
+            </button>
+          </form>
+        </nav>
+        <button id="hamburger" class="turnRight">
+          <div id="hamdiv"></div>
+        </button>
+      </div>
+    </div>
     <section class="todo_list">
+      <div class="graphic-container">
+        <button class="logout_button">
+          <i class="fa fa-sign-out"></i>
+        </button>
         <div class="graphic_background">
-            <h1>FastyTasky!</h1>
+          <h1>FastyTasky!</h1>
         </div>
+      </div>
+      <div class="tasks-container">
         <div class="todo_tasks">
-            <ul class="tasks" id="taskList">
-                <!-- <li></li>
-                <li></li>
-                <li></li>
-                <li></li> -->
-            </ul>
-     
-                       <div class="add_task">
-                <form class="add-task__form" action="">
-                        <input  id="item" 
-                                type="text" 
-                                name="item" 
-                                placeholder="Item Name" 
-                                minlength="3"
-                                maxlength="50"
-                                required>
-                        <button  id="submit-add" 
-                                type="submit">
-                                <i class="fa fa-plus"></i>
-                                </button>
-                </form> 
-
-            </div>
-    <div class="add_task">
-    
-            </div>
-         
+          <div class="add_task">
+            <form class="add-task__form" action="">
+              <input
+                id="item"
+                type="text"
+                name="item"
+                placeholder="Item Name.."
+                minlength="3"
+                maxlength="50"
+                required
+              />
+              <button id="submit-add" type="submit">
+                <i class="fa fa-plus"></i>
+              </button>
+            </form>
+          </div>
+          <ul class="tasks" id="taskList"></ul>
         </div>
+      </div>
     </section>
-    
-<script type="text/javascript" src="bundle.js"></script></body>
-
+  <script type="text/javascript" src="bundle.js"></script></body>
 </html>
