@@ -89,11 +89,7 @@ populateList(itemsTask, tasksList);
 let removeTaskBtn = document.createElement("button");
 
 removeTaskBtn.className = "item-task__remove";
-<<<<<<< HEAD
-//li.appendChild(removeTaskBtn);
-=======
 // li.appendChild(removeTaskBtn);
->>>>>>> 600fdb90592a4717089d222326e314371f364010
 function deleteTask(event) {
 
 
