@@ -23,6 +23,9 @@ mongoose
   .catch(err => console.error("Not connected!", err));
 
 app.use(cors());
+app.use(cors({
+  exposedHeaders: ['Content-Length', 'x-auth-token'],
+}));
 app.use(express.json());
 app.use("/", homePage);
 app.use("/api/auth", auth);

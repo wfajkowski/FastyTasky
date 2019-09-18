@@ -90,11 +90,11 @@ registerButton.addEventListener('click', () => {
                 },
                 body: JSON.stringify(requestBody)
             });
+            let token = response.headers.get('x-auth-token');
+            localStorage.setItem("x-auth-token", token);
+            main_view();
         } catch(err){
             console.log("Error:", err.message);
         }
-
-        //testowe wyswietlenie pobranych inputów
-        console.log(login, email, password)
     })
 })
