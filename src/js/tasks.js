@@ -134,8 +134,3 @@ function editItem(event) {
   }
 }
 
-const listLi = document.getElementsByClassName(' list-group-item');
-function showTasks(){
-  
-}
-listLi.addEventListener('click', showTasks)
