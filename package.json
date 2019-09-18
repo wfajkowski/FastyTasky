@@ -44,6 +44,8 @@
     "jquery": "^3.4.1",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
-    "mongoose": "^5.7.0"
+    "mongoose": "^5.7.0",
+    "perfect-scrollbar": "^1.4.0",
+    "simplebar": "^4.3.0-alpha.0"
   }
 }

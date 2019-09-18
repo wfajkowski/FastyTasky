@@ -4,6 +4,7 @@ import './js/hamburger.js';
 import 'jquery';
 import './js/profilePic.js';
 import './js/loginBox.js';
+import './js/perfectScrollbar.js'
 import './js/tasks.js';
 
 import {init} from './js/userLists';

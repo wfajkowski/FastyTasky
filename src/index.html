@@ -43,8 +43,9 @@
                 <button class="register_button">Register</button>
             </div>
     </header>
+    <div>
     <div class="nav-container">
-    <nav class="goLeft" id="navigation">
+    <nav class="goLeft" id="navigation"> 
         <div class="user_section">
             <div class="circle">
                 <img class="profile-pic" src="">
@@ -55,78 +56,55 @@
             </div>
             <p id="login_username">Username</p>
         </div>
-        <div class="todo_lists">
+        <div class="todo-lists">
             <ul class="list-group" id="items">
                 
             </ul>
         </div>
         <form id="adding_panel" class="form-inline mb-3">
-            <input type="text" class="form-control mr-2" id="item" placeholder="Add list...">
+            <input type="text" class="form-control mr-2" id="item" placeholder="Add list.." required>
             <button type="submit" class="btn btn-dark" value="add" id="add_button">
                 <i class="fa fa-plus"></i>
             </button>
         </form>
     </nav>
     <button id="hamburger" class="turnRight">
-            <div></div>
+            <div id="hamdiv"></div>
         </button>
 </div>
+</div>
     <section class="todo_list">
+        <div class="graphic-container">
         <div class="graphic_background">
             <h1>FastyTasky!</h1>
         </div>
+        </div>
+        <div class="tasks-container">
         <div class="todo_tasks">
+                <div class="add_task">
+                        <form class="add-task__form" action="">
+                            <input  id="item" 
+                                   type="text" 
+                                   name="item" 
+                                   placeholder="Item Name.." 
+                                   minlength="3"
+                                   maxlength="50"
+                                   required>
+                            <button  id="submit-add" 
+                                    type="submit">
+                               <i class="fa fa-plus"></i>
+                            </button>
+                        </form> 
+                   </div>
             <ul class="tasks" id="taskList">
-                <!-- <li></li>
-                <li></li>
-                <li></li>
-                <li></li> -->
+                    
             </ul>
-            <!-- <div class="add_task">
-                <form class="add-task__form" action="">
-                        <input  id="addTask" 
-                                type="text" 
-                                name="item" 
-                                placeholder="Item Name" 
-                                required>
-                        <input  id="submit-add" 
-                                class="btn-primary"
-                                type="submit" 
-                                value="+">
-                            
-                </form>
-            </div>  -->
-                       <div class="add_task">
-                <form class="add-task__form" action="">
-                        <input  id="item" 
-                                type="text" 
-                                name="item" 
-                                placeholder="Item Name" 
-                                minlength="3"
-                                maxlength="50"
-                                required>
-                        <button  id="submit-add" 
-                                type="submit">
-                                <i class="fa fa-plus"></i>
-                                </button>
-                </form> 
-
-            </div>
-    <div class="add_task">
-                <!-- <form class="add-task__form" action="">
-                        <input  id="item" 
-                                type="text" 
-                                name="item" 
-                                placeholder="Item Name" 
-                                required>
-                        <input  id="submit-add" 
-                                type="submit" 
-                                value="+">
-                </form> -->
-            </div>
-         
+     
+ 
+        </div>
         </div>
     </section>
+    
 </body>
 
 </html>

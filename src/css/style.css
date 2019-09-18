@@ -5,9 +5,10 @@
 html {
     box-sizing: border-box;
     font-family: 'Quicksand', sans-serif;
+    
 }
 body {
-    background-color: #fff6f6;
+    /* background-color: #604e70; */
     display: grid;
     grid-template-areas: "nav list";
     grid-template-columns: auto 1fr;
@@ -117,20 +118,31 @@ button:focus {
 }
 .nav-container{
     grid-area: nav;
+    height: 100vh;
+    margin: 0;
     position: relative;
+    margin-right: 5px;
 }
 #navigation {
-    border-right: 1px solid black;
+    /* border-right: 1px solid black; */
     height: 100vh;
     display: grid;
     grid-template-areas: "user-section"
-                            "todo-list";
-    grid-template-rows: auto 1fr;
-    min-width: 190px;
-    width: 27vw;
+                            "todo-list"
+                            "add";
+    grid-template-rows: auto 1fr auto;
+    min-width: 210px;
+    width: 22vw;
     position: relative;
-    z-index: 1;
+    overflow: hidden;
+    border-radius: 10px;
 }
+.todo-lists {
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    /* background-color: #78648b; */
+    background-image: linear-gradient(to bottom, #69557c, #705c84, #77628b, #7f6993, #86709b, #86709b, #86709b, #86709b, #7f6993, #77628b, #705c84, #69557c);}
 
 #hamburger {
     padding: 5px;
@@ -142,7 +154,6 @@ button:focus {
     outline:none;
     display: none;
     background-color: #fff6f6;
-    border: 1px solid rgba(0, 0, 0, 0.432);
   }
 #hamb3urger:focus{
     background-color: red;
@@ -190,9 +201,10 @@ button:focus {
     display: block;
     margin: 0 auto;
     text-align: center;
-    padding-bottom: 40px;
+    padding-bottom: 35px;
     padding-top: 20px;
     width: 100%;
+    background-image: linear-gradient(to bottom, #5e4c6f, #68557a, #735e86, #7d6891, #88719d);
 }
 .user_section img {
     width: 50%;
@@ -206,6 +218,10 @@ button:focus {
     font-size: 24px;
     margin: auto;
     margin-top: 10px;
+    color: #fff;
+    border-bottom: 3px dotted #fff;
+    width: 80%;
+    padding-bottom: 5px;
 }
 #profile-picture {
     position: relative;
@@ -215,57 +231,69 @@ button:focus {
     top: 0;
 }
 .list-group {
+    grid-area: todo-list;
     list-style-type: none;
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
-    /* overflow: scroll; */
-    
-}
-.list-group li {
-    border-bottom: 1px solid rgba(48, 48, 48, 0.315);
-    height: 6vh;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    position: relative;
-    box-sizing: border-box;
 }
 .list-group p {
     font-size: 20px;
     margin-left: 10px;
+    margin: 8px;
+    max-width: 70%; 
+}
+.fa-bolt {
+    margin: 0 5px;
+    font-size: 22px;
 }
 .list-group li button {
-    position: absolute;
     background-color: rgba(71, 71, 71, 0);
     border: none;
     right: 3%;
+    width: 26px;
     opacity: 0;
     padding: 2px 6px;
-    height: 60%;
-    width: 20px;
-    font-size: 18px;
-    width: auto;
+    font-size: 22px;
+    color: #fff;
 }
-.list-group li .delete {
-    right: 12%;
+.list-group li .edit {
+    margin-right: 5px;
 }
 
 .list-group li:hover {
-    background-color: #F5B7B1;
+    /* background-color: #cc6b8e; */
+    background-image: linear-gradient(#cc6b8e, #ec8e9e);
 }
 .list-group li button:focus {
     outline: none;
 }
+.list-group li button:hover {
+    color: rgb(201, 201, 201);
+    cursor: pointer;
+}
 .list-group li:hover button{
     opacity: 1;
+}
+.list-group li,
+.task {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.315);
+    width: 100%;
+    background-color: #88719d;
+    display: grid;
+    margin: 0;
+    grid-template-columns: auto 1fr min-content min-content;
+    align-items: center;
+    position: relative;
+    box-sizing: border-box;
+    color: #fff;
 }
 #adding_panel {
     display: grid;
     grid-template-columns: 85% 15%;
     height: 6vh;  
-    position: absolute;
+    position: relative;
     bottom: 0;
     width: 100%;
     left: 0; 
@@ -276,6 +304,11 @@ button:focus {
     font-size: 20px;
     padding-left: 10px;
     font-family: 'Quicksand', sans-serif;
+    background-color: #69557c;
+    color: #fff;
+}
+#adding_panel input::placeholder {
+    color: #fff;
 }
 #adding_panel input:focus {
     outline: none;
@@ -284,32 +317,36 @@ button:focus {
     width: 100%;
     height: 100%;
     font-size: 24px;
-    background-color: #ffffff;
+    background-color: #69557c;
     border: none;
     padding: 0;
+    color: #fff;
 }
-#add_button:focus {
+#add_button:focus,
+.add_task button {
     outline: none;
 }
-.todo_lists {
-    grid-area: todo-list;
+#add_button:hover,
+.add_task button {
+    color: rgb(201, 201, 201);
+    cursor: pointer;
 }
 .todo_list{
     grid-area: list;
-    /* border: 1px solid black; */
-    height: 100vh;
     display: grid;
     grid-template-areas: "graphic"
                             "tasks";
-    grid-template-rows: 25% 1fr;
+    grid-template-rows: 30% 70%;
+    height: 100vh;
 }
 .graphic_background {
     grid-area: graphic;
     background-color: rgba(18, 83, 83, 0.507);
 }
+
 .todo_tasks {
     grid-area: tasks;
-    background-color: #fff6f6;
+    background-image: linear-gradient(#cc6b8e, #ffbda3);
 }
 
 .profile-pic {
@@ -329,7 +366,10 @@ button:focus {
     height: 180px;
     width: 180px;
     margin: auto;
-    border: 1px solid rgb(0, 0, 0);
+    box-shadow: 0 0 0 3px #5b4c69,
+                0 0 0 7px #ffffff,
+                0 0 0 10px #5b4c69,
+                0 0 0 12px rgb(255, 255, 255);
     background-image: url('https://www.jennstrends.com/wp-content/uploads/2013/10/bad-profile-pic-2-768x768.jpeg');
     position: relative;
     background-color: #fff;
@@ -342,16 +382,16 @@ button:focus {
     height: auto;
 }
 .p-image {
-    background-color: rgba(43, 43, 43, 0.63);
+    background-color: rgba(48, 48, 48, 0.445);
   position: relative;
   margin-top: 190px;
   padding: 10px 40px 30px 40px;
-  color: #acacac;
+  color: #ffffff;
   font-size: 22px;
   transition: all .6s cubic-bezier(.175, .885, .32, 1.275);
 }
 .p-image:hover {
-  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+  transition: all .6s cubic-bezier(.175, .885, .32, 1.275);
   margin-top: 80px;
 }
 .circle:hover .p-image {
@@ -363,8 +403,9 @@ button:focus {
 
 }
 .upload-button:hover {
-  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
-  color: #999;
+  transition: all .6s cubic-bezier(.175, .885, .32, 1.275);
+  color: rgb(201, 201, 201);
+  cursor: pointer;
 }
 .graphic_background {
     background-image: url('http://hdqwalls.com/wallpapers/8-bit-pixel-art-city-2o.jpg');
@@ -374,15 +415,115 @@ button:focus {
     display: flex;
     justify-content: center;
     align-items: center;
+    box-sizing: content-box;
+    border-bottom: 1px solid rgb(0, 0, 0);
+    margin-top: 0;
+    border-radius: 10px;
+    height: 100%;
 }
 .graphic_background h1 {
     /* font-family: 'Permanent Marker', cursive; */
     font-family: 'Lobster', cursive;
     font-size: 3rem;
     color: #fff;
-    padding-top: 60px;
+    padding: 60px 25px 0 25px;
     height: min-content;
     border-bottom: #fff 3px dotted;
+    text-shadow:
+    1px  1px 2px rgba(0, 0, 0, 0.5),
+    1px -1px 2px rgba(0, 0, 0, 0.5),
+   -1px  1px 2px rgba(0, 0, 0, 0.5),
+   -1px -1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.task {
+    border-bottom: 1.5px solid rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    background-color: #ec0c0c00; 
+    width: 100%; 
+    font-size: 15px;
+    margin-top: 10px;
+}
+.task p {
+    font-size: 15px;
+    margin-left: 10px;
+    margin: 5px;
+}
+.task:hover {
+    background-color: #e0e0e057;
+}
+.tasks {
+    padding: 0px 20px 0 20px;
+    position: relative;
+    margin: 10px 0;
+    overflow: hidden;
+    margin: 0;
+}
+.task button {
+    background-color: rgba(145, 145, 145, 0);
+    border: none;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+}
+.task button:hover {
+    color: rgb(201, 201, 201);
+}
+
+.todo_list {
+    overflow: hidden;
+}
+.add_task {
+    margin: 10px 20px 0 20px;
+    padding: 0;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    position: relative;
+    font-size: 10px;
+    background-color: #cc6b8e;
+}
+.add_task input {
+    margin-left: 20px;
+    width: 100%;
+    font-size: 15px;
+    padding: 0;
+    border: none;
+    outline: none;
+    height: 40px;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0);
+    font-family: 'Quicksand', sans-serif;
+}
+.add_task input::placeholder {
+    color: #fff;
+}
+.add_task input:active {
+    background-color: rgba(255, 255, 255, 0);
+}
+.add_task button {
+    position: absolute;
+    height: 100%;
+    width: 30px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    top: 0;
+    right: 0;
+    margin: 0;
+    color: rgb(255, 255, 255);
+}
+.task-text {
+    font-size: 15px;
+}
+.tasks-container {
+    height: 98.5%;
+    margin-top: 7px;
+}
+.todo_tasks{
+    /* margin-top: 5px; */
+    border-radius: 10px;
+    height: 100%;
+    box-sizing: border-box;
 }
 
 
@@ -392,6 +533,65 @@ button:focus {
 
 
 
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    margin: auto 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  .container input {
+    position: relative;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+    z-index: 1;
+  }
+  .checkmark {
+    position: absolute;
+    left: 5px;
+    bottom: -2px;
+    height: 20px;
+    width: 20px;
+    background-color: rgba(238, 238, 238, 0);
+    border-radius: 50%;
+    border: 1px solid #ffffff;
+  }
+  .container:hover input ~ .checkmark {
+    background-color: #b598cf;
+  }
+  .container input:checked ~ .checkmark {
+    background-color: #ffffff;
+  }
+  
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    border: 1px solid #5b4c69;
+  }
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  .container .checkmark:after {
+    left: 7px;
+    top: 4.5px;
+    width: 4px;
+    height: 8px;
+    border: 1px solid #5b4c69;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
 
 @media (max-width: 700px) {
     .login_box, .login_clicked_box, .register_clicked_box {
@@ -399,26 +599,41 @@ button:focus {
     }
     #navigation {
         position: absolute;
-        left: -190px;
-        background-color: #fff6f6;
+        left: -210px;
+        z-index: 2;
+        background-color: #5b4c69;
     }
     .nav-container {
         position: relative;
+        margin: 0;
+    }
+    .list-group p {
+        font-size: 16px;
     }
     #hamburger {
         display: block;
        position: absolute;
        height: 30px;
+       background-color: #5b4c69;
        width: 30px;
+       
     }
     #hamburger.turnRight {
         left: 0px;
         z-index: 5;
     }
     #hamburger.turnLeft {
-        left: 161px;
+        left: 181px;
         z-index: 5;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.719);
+       border-left: 1px solid rgba(255, 255, 255, 0.719);
+       background-color: #705e80;
     }
+    #hamburger:after, 
+  #hamburger:before, 
+  #hamburger div {
+      background-color: #fff;
+  }
     #navigation.goRight {
         -webkit-transition: 1s;
         -moz-transition: 1s;
@@ -433,7 +648,7 @@ button:focus {
         -ms-transition: 1s;
         -o-transition: 1s;
         transition: 1s;
-        left: -190px;
+        left: -210px;
       }
       .circle {
         width: 120px;
@@ -450,6 +665,7 @@ button:focus {
     #add_button {
         font-size: 18px;
     }
+    
 }
 @media (max-width: 1100px) {
     .list-group li button {
@@ -479,5 +695,8 @@ button:focus {
     }
     .circle:hover .p-image {
         margin-top: 90px;
+    }
+    .list-group p {
+        font-size: 18px;
     }
 }
