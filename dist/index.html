@@ -13,41 +13,68 @@
     <header class="logging_screen">
 
     </header>
+    <div>
     <div class="nav-container">
-    <nav class="goLeft" id="navigation">
+    <nav class="goLeft" id="navigation"> 
         <div class="user_section">
-            <div>
-            <img src="/src/img/64572.png" id="profile-picture">
-            <!-- <input type="file" id="profile_select"> -->
+            <div class="circle">
+                <img class="profile-pic" src="">
+                <div class="p-image">
+                    <i class="fa fa-camera upload-button"></i>
+                    <input class="file-upload" type="file" accept="image/*"/>
+                </div>
             </div>
-            <p>Username</p>
+        <p>Username</p>
         </div>
-        <div class="todo_lists">
+        <div class="todo-lists">
             <ul class="list-group" id="items">
                 
             </ul>
         </div>
         <form id="adding_panel" class="form-inline mb-3">
-            <input type="text" class="form-control mr-2" id="item" placeholder="Add list...">
-            <input type="submit" class="btn btn-dark" value="add" id="add_button">
+            <input type="text" class="form-control mr-2" id="item" placeholder="Add list.." required>
+            <button type="submit" class="btn btn-dark" value="add" id="add_button">
+                <i class="fa fa-plus"></i>
+            </button>
         </form>
     </nav>
     <button id="hamburger" class="turnRight">
-            <div></div>
+            <div id="hamdiv"></div>
         </button>
 </div>
+</div>
     <section class="todo_list">
+        <div class="graphic-container">
         <div class="graphic_background">
+            <h1>FastyTasky!</h1>
         </div>
+        </div>
+        <div class="tasks-container">
         <div class="todo_tasks">
-            <ul class="tasks">
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
+                <div class="add_task">
+                        <form class="add-task__form" action="">
+                            <input  id="item" 
+                                   type="text" 
+                                   name="item" 
+                                   placeholder="Item Name.." 
+                                   minlength="3"
+                                   maxlength="50"
+                                   required>
+                            <button  id="submit-add" 
+                                    type="submit">
+                               <i class="fa fa-plus"></i>
+                            </button>
+                        </form> 
+                   </div>
+            <ul class="tasks" id="taskList">
+                    
             </ul>
+     
+ 
+        </div>
         </div>
     </section>
+    
 <script type="text/javascript" src="bundle.js"></script></body>
 
 </html>

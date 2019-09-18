@@ -8,6 +8,7 @@ const mongoose = require("mongoose");
 const users = require("../routes/users");
 const homePage = require("../routes/home");
 const toDoList = require("../routes/toDoLists");
+const sharedLists = require("../routes/sharedLists");
 const logger = require("../middleware/logger");
 const auth = require("../routes/auth");
 const mongoDbPass = process.env.DB_PASS;
@@ -28,6 +29,7 @@ app.use("/", homePage);
 app.use("/api/auth", auth);
 app.use("/api/users", users);
 app.use("/api/my_lists", toDoList);
+app.use("/api/shared_lists", sharedLists);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));

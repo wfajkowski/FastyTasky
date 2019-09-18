@@ -15,6 +15,9 @@ const getLists = async () => {
     for (let i = 0; i < myToDos.length; i++) {
       let li = document.createElement("li");
       li.className = "list-group-item";
+      var liIcon = document.createElement('i');
+      liIcon.className = 'fa fa-bolt';
+      li.appendChild(liIcon);
       let liText = document.createElement("p");
       liText.className = "liText";
       liText.appendChild(document.createTextNode(myToDos[i].title));

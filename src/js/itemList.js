@@ -1,5 +1,9 @@
+
+
 form = document.getElementById('adding_panel');
 itemList = document.getElementById('items');
+deleteButton = document.getElementsByClassName('delete');
+editButton = document.getElementsByClassName('edit');
 
 tab = [];
 
@@ -11,11 +15,14 @@ function addItem(e){
     e.preventDefault();
     var newItem = document.getElementById('item').value;
     var li = document.createElement('li');
+    var liIcon = document.createElement('i');
+    liIcon.className = 'fa fa-bolt';
     li.className = 'list-group-item';
+    li.appendChild(liIcon);
     var liText = document.createElement('p');
     liText.className = 'liText';
-    liText.appendChild(document.createTextNode(newItem));
     li.appendChild(liText);
+    liText.appendChild(document.createTextNode(newItem));
     var deleteBtn = document.createElement('button');
     var deleteIcon = document.createElement('i');
     var editBtn = document.createElement('button');
@@ -39,18 +46,26 @@ function addItem(e){
   function removeItem(e){
     if(e.target.classList.contains('delete')){
       if(confirm('Are You Sure?')){
-        var li = e.target.parentElement;
+        let li = e.target.parentElement;
         itemList.removeChild(li);
         let index = tab.indexOf(li.textContent);
         tab.splice(index, 1);
         //  console.log(tab)
+      } 
+    } else if(e.target.classList.contains('fa-trash')){
+      if(confirm('Are You Sure?')){
+        let buttonClick = e.target.parentElement;
+        let li = buttonClick.parentElement;
+        itemList.removeChild(li);
+      let index = tab.indexOf(li.textContent);
+      tab.splice(index, 1);
       }
     }
   }
   function editItem(e) {
     if(e.target.classList.contains('edit')){
       if(confirm('Do you want to edit this item?')){
-      var li = e.target.parentElement;
+      let li = e.target.parentElement;
       let index = tab.indexOf(li.textContent);
       tab.splice(index, 1);
       // console.log(tab);
@@ -59,12 +74,22 @@ function addItem(e){
         if (e.keyCode == 13) {
           tab.push(li.textContent);
           // console.log(tab);
-          li.contentEditable = 'false';
-            
-        }
-
-      }
-      // tab.splice(index)
+          li.contentEditable = 'false';  
+        }}
+      )} 
+    } else if(e.target.classList.contains('fa-gear')){
+      if(confirm('Do you want to edit this item?')){
+        let buttonClick = e.target.parentElement;
+        let li = buttonClick.parentElement;
+        let index = tab.indexOf(li.textContent);
+        tab.splice(index, 1);
+        // console.log(tab);
+        li.contentEditable = 'true';
+        window.addEventListener('keypress', (e)=> {
+          if (e.keyCode == 13) {
+            tab.push(li.textContent);
+            // console.log(tab);
+            li.contentEditable = 'false';  
+        }}
       )}
-    }
-  }
+    }}
