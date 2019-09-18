@@ -1,6 +1,6 @@
-itemList = document.getElementById("items");
+let itemList = document.getElementById("items");
 
-tab = [];
+let tab = [];
 
 const getLists = async () => {
   const request = new Request("http://localhost:3000/api/my_lists", {
@@ -15,6 +15,7 @@ const getLists = async () => {
     for (let i = 0; i < myToDos.length; i++) {
       let li = document.createElement("li");
       li.className = "list-group-item";
+      li.dataset.id = myToDos[i]._id;
       var liIcon = document.createElement('i');
       liIcon.className = 'fa fa-bolt';
       li.appendChild(liIcon);
@@ -41,6 +42,42 @@ const getLists = async () => {
     console.log("Error:", err.message);
   }
 };
+
+export const createList = async () => {
+  const listTitle = document.querySelector('#item').value;
+  const request = new Request("http://localhost:3000/api/my_lists", {
+    method: "POST",
+    body: JSON.stringify({
+      title: listTitle,
+      userId: "5d7e412fb184593eb44fb240",
+      tasks: []
+    }),
+    headers: { 
+      "Content-Type": "application/json" 
+    }
+  });
+  try {
+    const data = await fetch(request);
+    const savedData = await data.json();
+    return savedData;
+  } catch (err) {
+    console.log("Error:", err.message);
+  }
+}
+
+export const deleteList = async (element) => {
+  const request = new Request("http://localhost:3000/api/my_lists/" + element.dataset.id, {
+    method: "DELETE"
+  });
+
+  try {
+    const data = await fetch(request);
+    const deletedList = await data.json();
+    return deletedList;
+  } catch (err) {
+    console.log("Error:", err.message);
+  }
+}
 
 export const init = () => {
   getLists();
