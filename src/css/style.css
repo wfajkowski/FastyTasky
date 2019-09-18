@@ -24,6 +24,7 @@ header {
     justify-content: center;
     align-items: center;
     z-index: 2;
+    background-image: url(../img/background.jpg);
     background-size: cover;
     background-position: center;
 }
