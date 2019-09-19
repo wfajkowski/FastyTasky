@@ -1,6 +1,7 @@
 import { init } from "./userLists";
-const loginButton = document.querySelector('.login_button')
-const registerButton = document.querySelector('.register_button')
+const loginButton = document.querySelector(".login_button");
+const registerButton = document.querySelector(".register_button");
+const logoutButton = document.querySelector(".logout_button");
 
 //Wyswietla formularz logowania po kliknięciu Sign In
 loginButton.addEventListener("click", () => {
@@ -39,7 +40,6 @@ loginButton.addEventListener("click", () => {
       document.querySelector('#navigation').style.display= 'block';
       document.querySelector('.todo_list').style.display= 'block';
       document.querySelector('#login_username').innerHTML = response.name;
-      init();
     } catch (err) {
       console.log("Error:", err.message);
     }
@@ -49,7 +49,7 @@ loginButton.addEventListener("click", () => {
   });
 });
 
-async function main_view() {
+export async function main_view() {
   const token = localStorage.getItem("x-auth-token");
   let apiURL = "http://localhost:3000/api/users/me";
   try {
@@ -72,6 +72,7 @@ async function main_view() {
       localStorage.removeItem("x-auth-token");
       location.reload();
     });
+    init();
   } catch (err) {
     console.log("Error:", err.message);
   }
