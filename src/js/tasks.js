@@ -6,8 +6,7 @@ const tasksList = document.querySelector(".tasks");
 // array with data, to fetch
 const itemsTask = [];
 
-//W  momencie usunięcia elementu i dodania kolejnego stary element renederuje się razem z nowym,
-//natomiast tablica itemsTask, działa poprawnie
+
 let li =  document.querySelector(".task");
 
 
