@@ -23,23 +23,27 @@ header {
   justify-content: center;
   align-items: center;
   z-index: 2;
-  background-image: url(../img/background.jpg);
+  background-image: url("http://hdqwalls.com/wallpapers/8-bit-pixel-art-city-2o.jpg");
   background-size: cover;
-  background-position: center;
+  background-position: center; 
 }
 header form {
   width: 60%;
   margin-bottom: 20px;
+  font-size: 20px;
   box-sizing: border-box;
   text-align: center;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
+  font-family: "Lobster", cursive;
   font-weight: bold;
 }
+
 header input {
   width: 100%;
   height: 1.75rem;
   border-radius: 15px;
   text-align: center;
+  font-family: "Quicksand", sans-serif;
 }
 
 .login_box,
@@ -49,7 +53,8 @@ header input {
   min-width: 300px;
   height: 70%;
   min-height: 450px;
-  background-color: rgba(255, 255, 255, 0.692);
+  background-color: rgba(255, 255, 255, 0.301);
+  font-family: "Quicksand", sans-serif !important;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -61,32 +66,53 @@ header input {
   display: none;
   align-items: center;
 }
+.login_logo h1{
+  border: none !important;
+  background-image: url("http://hdqwalls.com/wallpapers/8-bit-pixel-art-city-2o.jpg");
+  background-size: cover;
+  background-position: center; 
+  margin-bottom: 20px;
+  padding: 40px 30px !important;
+  border-radius: 60%;
+  width: 70%;
+  text-align: center;
+}
 .login_logo {
   height: 60%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.login_logo img {
-  width: 50%;
+.logging_screen p {
+  font-size: 18px;
+  margin: 10px 0 5px 0;
 }
 .login_description {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 10%;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Quicksand", sans-serif;
+  color: #fff;
+  border-bottom: 2px dotted #fff;
+  margin: 0 20%;
   font-weight: bold;
   font-size: calc(8px + 1vw);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5), 1px -1px 3px rgba(0, 0, 0, 0.5),
+    -1px 1px 3px rgba(0, 0, 0, 0.5), -1px -1px 3px rgba(0, 0, 0, 0.5);
 }
 .login_buttons {
   height: 30%;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  
 }
 button:focus {
   outline: 0;
+}
+.logging_screen input:focus {
+  outline: none;
 }
 .login_clicked_box button,
 .register_clicked_box button {
@@ -100,38 +126,43 @@ button:focus {
   height: 3.125rem;
   width: 40%;
   border-radius: 15px;
-  border: none;
   font-weight: bold;
   font-size: 1.125rem;
   text-align: center;
-  color: white;
+  outline: none;
+  font-family: "Quicksand", sans-serif;
+
 }
 .login_button {
-  background-color: rgb(55, 209, 114);
+  background-image: linear-gradient(#ec8e9e, #cc6b8e);
+  color: #fff;
+  border: 3px solid #fff;
 }
 .login_button:hover {
-  background-color: rgba(255, 255, 255, 0.692);
-  border: 3px solid rgb(55, 209, 114);
-  color: rgb(55, 209, 114);
+  background-image: linear-gradient(#ec8e9e, #cc6b8e);
+  color: #fff;
+  border: 3px solid #51435c;
 }
 .register_button {
-  background-color: rgb(214, 24, 56);
+  background-image: linear-gradient(#b598cf, #7f6a92);
+  color: #fff;
+  border: 3px solid #fff;
 }
 .register_button:hover {
-  background-color: rgba(255, 255, 255, 0.692);
-  color: rgb(214, 24, 56);
-  border: 3px solid rgb(214, 24, 56);
+  color: #fff;
+  border: 3px solid #bd6384;
 }
 .nav-container {
   grid-area: nav;
-  height: 100vh;
+  height: 100%;
   margin: 0;
   position: relative;
   margin-right: 5px;
 }
 #navigation {
   /* border-right: 1px solid black; */
-  height: 100vh;
+  height: 100%;
+  max-height: 100vh;
   display: grid;
   grid-template-areas:
     "user-section"
@@ -145,9 +176,8 @@ button:focus {
   border-radius: 10px;
 }
 .todo-lists {
-  height: 100%;
-  position: relative;
   overflow: hidden;
+  position: relative;
   /* background-color: #78648b; */
   background-image: linear-gradient(
     to bottom,
@@ -246,7 +276,7 @@ button:focus {
 .user_section p {
   font-size: 24px;
   margin: auto;
-  margin-top: 10px;
+  margin-top: 20px;
   color: #fff;
   border-bottom: 3px dotted #fff;
   width: 80%;
@@ -263,7 +293,7 @@ button:focus {
   grid-area: todo-list;
   list-style-type: none;
   width: 100%;
-  height: 100%;
+ 
   margin: 0;
   padding: 0;
 }
@@ -323,10 +353,11 @@ button:focus {
   display: grid;
   grid-template-columns: 85% 15%;
   height: 6vh;
-  position: absolute;
+  position: relative;
   bottom: 0;
   width: 100%;
   left: 0;
+  
 }
 #adding_panel input {
   width: 100%;
@@ -334,7 +365,14 @@ button:focus {
   font-size: 20px;
   padding-left: 10px;
   font-family: "Quicksand", sans-serif;
-  background-color: #69557c;
+  background-image: linear-gradient(
+    to top,
+    #5e4c6f,
+    #68557a,
+    #735e86,
+    #7d6891,
+    #88719d
+  );
   color: #fff;
 }
 #adding_panel input::placeholder {
@@ -347,7 +385,14 @@ button:focus {
   width: 100%;
   height: 100%;
   font-size: 24px;
-  background-color: #69557c;
+  background-image: linear-gradient(
+    to top,
+    #5e4c6f,
+    #68557a,
+    #735e86,
+    #7d6891,
+    #88719d
+  );
   border: none;
   padding: 0;
   color: #fff;
@@ -363,12 +408,14 @@ button:focus {
 }
 .todo_list {
   grid-area: list;
+  height: 100vh;
   display: grid;
+  position: relative;
   grid-template-areas:
     "graphic"
     "tasks";
   grid-template-rows: 30% 70%;
-  height: 100vh;
+
 }
 .graphic_background {
   grid-area: graphic;
@@ -376,8 +423,9 @@ button:focus {
 }
 
 .todo_tasks {
-  grid-area: tasks;
+  height: 100%;
   background-image: linear-gradient(#cc6b8e, #ffbda3);
+  padding-top: 10px;
 }
 
 .profile-pic {
@@ -399,7 +447,8 @@ button:focus {
   margin: auto;
   box-shadow: 0 0 0 3px #5b4c69, 0 0 0 7px #ffffff, 0 0 0 10px #5b4c69,
     0 0 0 12px rgb(255, 255, 255);
-  background-image: url("https://www.jennstrends.com/wp-content/uploads/2013/10/bad-profile-pic-2-768x768.jpeg");
+  /* background-image: url("https://www.jennstrends.com/wp-content/uploads/2013/10/bad-profile-pic-2-768x768.jpeg"); */
+  background-image: url("https://media2.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif?cid=790b7611767c10d0bb9167c42ed873dfb6b746fef597dd61&rid=giphy.gif");
   position: relative;
   background-color: #fff;
   background-size: contain;
@@ -449,6 +498,7 @@ button:focus {
   border-radius: 10px;
   height: 100%;
 }
+.login_logo h1,
 .graphic_background h1 {
   /* font-family: 'Permanent Marker', cursive; */
   font-family: "Lobster", cursive;
@@ -480,7 +530,6 @@ button:focus {
 }
 .tasks {
   padding: 0px 20px 0 20px;
-  position: relative;
   margin: 10px 0;
   overflow: hidden;
   margin: 0;
@@ -490,11 +539,14 @@ button:focus {
   border: none;
   font-size: 20px;
   color: rgb(255, 255, 255);
+  display: none;
 }
 .task button:hover {
   color: rgb(201, 201, 201);
 }
-
+.task:hover button {
+  display: block;
+}
 .todo_list {
   overflow: hidden;
 }
@@ -505,7 +557,6 @@ button:focus {
   border-radius: 10px;
   position: relative;
   font-size: 10px;
-  background-color: #cc6b8e;
 }
 .add_task input,
 .logout_button {
@@ -543,14 +594,19 @@ button:focus {
   font-size: 15px;
 }
 .tasks-container {
-    height: 98.5%;
+    grid-area: tasks;
+    position: relative;
+    height: 99%;
     margin-top: 5px;
+    overflow: hidden;
 }
 .todo_tasks {
   /* margin-top: 5px; */
   border-radius: 10px;
   height: 100%;
   box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
 }
 
 .container {
@@ -614,11 +670,11 @@ button:focus {
 
 .logout_button {
   position: absolute;
-  height: 40px;
-  width: 40px;
+  height: 35px;
+  width: 35px;
   right: 0px;
   top: 0px;
-  font-size: 25px;
+  font-size: 22px;
   border: 2px solid #fff;
   border-radius: 10px;
   display: none;
@@ -626,7 +682,7 @@ button:focus {
 }
 
 .logout_button:hover {
-  color: rgb(201, 201, 201);
+  background-color: #88719dab;
   cursor: pointer;
 }
 
@@ -735,5 +791,10 @@ button:focus {
   }
   .list-group p {
     font-size: 18px;
+  }
+  .login_box,
+  .login_clicked_box,
+  .register_clicked_box {
+    width: 65%;
   }
 }

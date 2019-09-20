@@ -37,8 +37,8 @@ loginButton.addEventListener("click", () => {
       response = await response.json();
       console.log(response.name);
       document.querySelector('header').style.display= 'none';
-      document.querySelector('#navigation').style.display= 'block';
-      document.querySelector('.todo_list').style.display= 'block';
+      document.querySelector('#navigation').style.display= 'grid';
+      document.querySelector('.todo_list').style.display= 'grid';
       document.querySelector('#login_username').innerHTML = response.name;
     } catch (err) {
       console.log("Error:", err.message);
@@ -63,8 +63,8 @@ export async function main_view() {
     response = await response.json();
     console.log(response.name);
     document.querySelector("header").style.display = "none";
-    document.querySelector("#navigation").style.display = "block";
-    document.querySelector(".todo_list").style.display = "block";
+    document.querySelector("#navigation").style.display = "grid";
+    document.querySelector(".todo_list").style.display = "grid";
     document.querySelector("#login_username").innerHTML = response.name;
 
     logoutButton.style.display = "block";
