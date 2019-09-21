@@ -1,4 +1,4 @@
-import { createList, deleteList } from "./userLists";
+import { createList, deleteList, updateListName } from "./userLists";
 
 let form = document.getElementById('adding_panel');
 let itemList = document.getElementById('items');
@@ -77,6 +77,7 @@ function addItem(e){
         if (e.keyCode == 13) {
           tab.push(li.textContent);
           // console.log(tab);
+          updateListName(li);
           li.contentEditable = 'false';  
         }}
       )} 
@@ -92,6 +93,7 @@ function addItem(e){
           if (e.keyCode == 13) {
             tab.push(li.textContent);
             // console.log(tab);
+            updateListName(li);
             li.contentEditable = 'false';  
         }}
       )}

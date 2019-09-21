@@ -1,16 +1,52 @@
+import { createTaskOfList } from "./userLists";
 const form = document.querySelector(".add-task__form");
 const tasksList = document.querySelector(".tasks");
 
 
-
 // array with data, to fetch
-const itemsTask = [];
+
+let itemsTask = [];
+
+export const tasksFetch = async () => {
+  itemsTask = [];
+  const activeListId = await document.querySelector(".list-group-item.active")
+    .dataset.id;
+  console.log(activeListId);
+  const request = new Request(
+    "http://localhost:3000/api/my_lists/" + activeListId,
+    {
+      method: "GET"
+    }
+  );
+  try {
+    const data = await fetch(request);
+    const list = await data.json();
+    const tasks = [list.tasks];
+    // console.log(list);
+    const tasksArray = tasks[0];
+    const tasksList = document.querySelector(".tasks");
+    // console.log(tasksArray);
+    // console.log(tasksList);
+    populateList(tasksArray, tasksList);
+    let addedTasks = await document.querySelectorAll("#taskList li p");
+    // console.log(addedTasks);
+    await addedTasks.forEach(item =>
+      itemsTask.push({
+        name: item.textContent,
+        done: false
+      })
+    );
+    console.log(itemsTask);
+  } catch (err) {
+    console.log("Error:", err.message);
+  }
+}
+
+
 
 //W  momencie usunięcia elementu i dodania kolejnego stary element renederuje się razem z nowym,
 //natomiast tablica itemsTask, działa poprawnie
 let li =  document.querySelector(".task");
-
-
 
 
 
@@ -24,9 +60,11 @@ function addTask(event) {
     name,
     done: false
   };
+  console.log(item);
+  // itemsTask = 
   itemsTask.push(item);
   populateList(itemsTask, tasksList);
-
+  createTaskOfList();
 // console.log(itemsTask);
   this.reset();
 }
@@ -34,7 +72,7 @@ function addTask(event) {
 //################################
 // #########        ADD - NODE ELEMENTS TO NEW TASK      #############
 //#################################
-function populateList(tasks = [], tasksList) {
+export function populateList(tasks = [], tasksList) {
   tasksList.innerHTML = tasks
     .map((item, i) => {
       return `
@@ -73,6 +111,7 @@ function toggleDone(event) {
   if (!event.target.matches("input")) return;
   const el = event.target;
   const index = el.dataset.index;
+  console.log(itemsTask);
   itemsTask[index].done = !itemsTask[index].done;
   populateList(itemsTask, tasksList);
 
