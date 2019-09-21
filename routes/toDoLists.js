@@ -23,10 +23,10 @@ router.post("/", async (req, res) => {
     title: req.body.title,
     userId: user._id,
     tasks: req.body.tasks.map(task => {
-      return {
+      return [{
         name: task,
         done: false
-      };
+      }];
     })
   });
 

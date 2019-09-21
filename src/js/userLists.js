@@ -87,7 +87,7 @@ export const createList = async () => {
     method: "POST",
     body: JSON.stringify({
       title: listTitle,
-      userId: "5d7e412fb184593eb44fb240",
+      userId: "5d82a884811f4f1dcc8aeec3",
       tasks: []
     }),
     headers: {
@@ -97,8 +97,7 @@ export const createList = async () => {
   try {
     const data = await fetch(request);
     const savedData = await data.json();
-    document.querySelector(".list-group-item:last-child").dataset.id =
-      savedData._id;
+    document.querySelector(".list-group-item:last-child").dataset.id = savedData._id;
     return savedData;
   } catch (err) {
     console.log("Error:", err.message);
@@ -106,7 +105,7 @@ export const createList = async () => {
 };
 
 export const createTaskOfList = async () => {
-  const taskName = document.querySelector(".add-task__form #item").value;
+  const taskName = document.querySelector(".add-task__form #itemm").value;
   const activeListId = await document.querySelector(".list-group-item.active")
     .dataset.id;
   const activeListName = await document.querySelector(

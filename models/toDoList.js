@@ -27,7 +27,7 @@ function validateToDoList(toDoList) {
       .min(3)
       .max(50)
       .required(),
-    // userId: Joi.objectId().required(),
+    userId: Joi.objectId(),
     tasks: Joi.array()
       .items(
         Joi.object().keys({
