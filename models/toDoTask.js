@@ -22,7 +22,8 @@ function validateToDoTask(toDoTask) {
     name: Joi.string()
       .min(3)
       .max(50)
-      .required()
+      .required(),
+    done: Joi.boolean()
   };
 
   return Joi.validate(toDoTask, schema);

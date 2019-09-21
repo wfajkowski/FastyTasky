@@ -14,7 +14,14 @@ const mongoDbPass = process.env.DB_PASS;
 
 mongoose
   .connect(
-    `mongodb+srv://superadmin:${mongoDbPass}@fastytaskydb-ydnvh.mongodb.net/fastytasky?retryWrites=true&w=majority`
+    `mongodb+srv://superadmin:${mongoDbPass}@fastytaskydb-ydnvh.mongodb.net/fastytasky?retryWrites=true&w=majority`,
+    {
+      // added some options to work around errors in the server terminal
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: false
+    }
   )
   .then(() => {
     console.log(" Connected to MongoDB...");

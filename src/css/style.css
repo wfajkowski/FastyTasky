@@ -336,6 +336,9 @@ button:focus {
 .list-group li:hover button {
   opacity: 1;
 }
+.list-group-item.active {
+  background-image: linear-gradient(#cc6b8e, #ec8e9e);
+}
 .list-group li,
 .task {
   border-bottom: 1px solid rgba(255, 255, 255, 0.315);

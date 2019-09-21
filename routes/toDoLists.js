@@ -1,12 +1,13 @@
-// const auth = require("../middleware/auth");
+const auth = require("../middleware/auth");
 const { ToDoList, validate } = require("../models/toDoList");
 const { toDoTask } = require("../models/toDoTask");
 const { User } = require("../models/user");
 const express = require("express");
 const router = express.Router();
 
-router.get("/", async (req, res) => {
-  const toDoLists = await ToDoList.find();
+router.get("/", /*auth,*/ async (req, res) => {
+  // const user = await User.findById(req.user._id);
+  const toDoLists = await ToDoList.find(/*user*/);
   res.send(toDoLists);
 });
 
@@ -42,10 +43,10 @@ router.put("/:id", async (req, res) => {
     req.params.id,
     {
       title: req.body.title,
-      userId: user._id,
+      // userId: user._id,
       tasks: req.body.tasks.map(task => {
         return {
-          name: task,
+          name: task.name,
           done: false
         };
       })
@@ -58,6 +59,7 @@ router.put("/:id", async (req, res) => {
       .send("ToDo list you are looking for does not exist.");
   res.send(searchedList);
 });
+
 
 router.delete("/:id", async (req, res) => {
   const searchedList = await ToDoList.findByIdAndRemove(req.params.id);

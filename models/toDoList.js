@@ -27,12 +27,15 @@ function validateToDoList(toDoList) {
       .min(3)
       .max(50)
       .required(),
-    userId: Joi.objectId().required(),
+    // userId: Joi.objectId().required(),
     tasks: Joi.array()
       .items(
-        Joi.string()
-          .min(3)
-          .max(50)
+        Joi.object().keys({
+          name: Joi.string()
+            .min(3)
+            .max(50),
+          done: Joi.boolean()
+        })
       )
       .required()
   };
