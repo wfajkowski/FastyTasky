@@ -9,12 +9,13 @@ $(document).ready(function() {
 
             reader.onload = function (e) {
                 $('.circle').css("background-image", `url(${e.target.result})`);
+                //saving avatar silly workaround:
+                localStorage.setItem(localStorage.getItem("x-auth-token").slice(0, 99)+"IMG", e.target.result)
             }
-    
+            
             reader.readAsDataURL(input.files[0]);
         }
     }
-    
 
     $(".file-upload").on('change', function(){
         readURL(this);

@@ -66,6 +66,8 @@ export async function main_view() {
     document.querySelector("#navigation").style.display = "grid";
     document.querySelector(".todo_list").style.display = "grid";
     document.querySelector("#login_username").innerHTML = response.name;
+    //reading avatar silly workaround:
+    if (localStorage.getItem(token.slice(0, 99)+"IMG")) document.querySelector('.circle').style.backgroundImage = `url(${localStorage.getItem(token.slice(0, 99)+"IMG")})`;
 
     logoutButton.style.display = "block";
     logoutButton.addEventListener("click", () => {
