@@ -17,7 +17,8 @@ const ToDoList = mongoose.model(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true
-    }
+    },
+    index: Number
   })
 );
 
@@ -37,7 +38,8 @@ function validateToDoList(toDoList) {
           done: Joi.boolean()
         })
       )
-      .required()
+      .required(),
+    index: Joi.number()
   };
 
   return Joi.validate(toDoList, schema);

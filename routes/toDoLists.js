@@ -5,11 +5,14 @@ const { User } = require("../models/user");
 const express = require("express");
 const router = express.Router();
 
-router.get("/", /*auth,*/ async (req, res) => {
-  // const user = await User.findById(req.user._id);
-  const toDoLists = await ToDoList.find(/*user*/);
-  res.send(toDoLists);
-});
+router.get(
+  "/",
+  /*auth,*/ async (req, res) => {
+    // const user = await User.findById(req.user._id);
+    const toDoLists = await ToDoList.find(/*user*/).sort("index");
+    res.send(toDoLists);
+  }
+);
 
 router.post("/", async (req, res) => {
   const { error } = validate(req.body);
@@ -23,11 +26,14 @@ router.post("/", async (req, res) => {
     title: req.body.title,
     userId: user._id,
     tasks: req.body.tasks.map(task => {
-      return [{
-        name: task,
-        done: false
-      }];
-    })
+      return [
+        {
+          name: task,
+          done: false
+        }
+      ];
+    }),
+    index: 1000
   });
 
   await listOfTasks.save();
@@ -59,7 +65,6 @@ router.put("/:id", async (req, res) => {
       .send("ToDo list you are looking for does not exist.");
   res.send(searchedList);
 });
-
 
 router.delete("/:id", async (req, res) => {
   const searchedList = await ToDoList.findByIdAndRemove(req.params.id);
