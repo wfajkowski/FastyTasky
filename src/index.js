@@ -6,10 +6,11 @@ import "./js/profilePic.js";
 import "./js/loginBox.js";
 import "./js/perfectScrollbar.js";
 import "./js/tasks.js";
-import {main_view} from './js/loginBox.js';
+import "./js/sortTasks.js";
+
+import { main_view } from "./js/loginBox.js";
 
 const token = localStorage.getItem("x-auth-token");
 if (token) {
   main_view();
 }
-
