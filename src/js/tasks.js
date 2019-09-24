@@ -1,6 +1,6 @@
 import { createTaskOfList } from "./userLists";
 const form = document.querySelector(".add-task__form");
-const tasksList = document.querySelector(".tasks");
+const tasksList = document.querySelector('.tasks');
 
 
 // array with data, to fetch
@@ -96,7 +96,7 @@ export function populateList(tasks = [], tasksList) {
 
  
 }
-tasksList.addEventListener("click", deleteTask);
+tasksList.addEventListener('click', deleteTask);
 tasksList.addEventListener("click", editItem);
 form.addEventListener("submit", addTask);
 
@@ -125,32 +125,28 @@ populateList(itemsTask, tasksList);
 // #########         REMOVE TASK      #############
 //#################################
 let removeTaskBtn = document.createElement("button");
-
 removeTaskBtn.className = "item-task__remove";
+tasksList.addEventListener("click", deleteTask);
+
 // li.appendChild(removeTaskBtn);
 function deleteTask(event) {
-
-
-  
    if (event.target.classList.contains("item-task__remove")) {
      if (confirm("Are You Sure")) {
        let li = event.target.parentElement;
        tasksList.removeChild(li);
-  
-      // console.log(li);
-    
-
- 
        let index = itemsTask.indexOf(item.textContent);
        itemsTask.splice(index,1);
-      //  console.log(itemsTask);
-    
-     }
-      
+      }
+     } else if (event.target.classList.contains("fa-trash")) {
+      if (confirm("Are You Sure?")) {
+        let buttonClick = event.target.parentElement;
+        let li = buttonClick.parentElement;
+        tasksList.removeChild(li);
+        let index = itemsTask.indexOf(item.textContent);
+       itemsTask.splice(index,1);
+      }
+    }
    }
-
- }
-
 
 //################################
 // #########        EDIT TASK      #############
@@ -158,17 +154,28 @@ function deleteTask(event) {
 function editItem(event) {
   if (event.target.classList.contains("item-task__edit")) {
     if (confirm("Do you want to edit this task?")) {
-      let li = event.target.previousElementSibling;
+      let li = event.target.parentElement;
       li.contentEditable = "true";
       window.addEventListener("keypress", event => {
         if (event.keyCode == 13) {
           itemsTask.push(li.textContent);
-
           li.contentEditable = "false";
           // console.log(itemsTask);
         }
-      });
+      })
+    }
+    } else if (event.target.classList.contains("fa-gear")) {
+      if (confirm("Do you want to edit this task?")) {
+        let buttonClick = event.target.parentElement;
+        let li = buttonClick.parentElement;
+        li.contentEditable = "true";
+        window.addEventListener("keypress", e => {
+          if (e.keyCode == 13) {
+            li.contentEditable = "false";
+          }
+        });
+      }
     }
   }
-}
+
 

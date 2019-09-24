@@ -405,7 +405,7 @@ button:focus {
   outline: none;
 }
 #add_button:hover,
-.add_task button {
+.add_task button:hover {
   color: rgb(201, 201, 201);
   cursor: pointer;
 }

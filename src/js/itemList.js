@@ -68,9 +68,6 @@ function editItem(e) {
       li.contentEditable = "true";
       window.addEventListener("keypress", e => {
         if (e.keyCode == 13) {
-          // tab.push(li.textContent);
-          // console.log(tab);
-          // updateListName(li);
           li.contentEditable = "false";
           editList(li);
         }
