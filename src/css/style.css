@@ -51,8 +51,8 @@ header input {
 .register_clicked_box {
   width: 40%;
   min-width: 300px;
-  height: 70%;
-  min-height: 450px;
+  height: 60%;
+  min-height: 350px;
   background-color: rgba(255, 255, 255, 0.301);
   font-family: "Quicksand", sans-serif !important;
   display: flex;
@@ -71,7 +71,7 @@ header input {
   background-image: url("http://hdqwalls.com/wallpapers/8-bit-pixel-art-city-2o.jpg");
   background-size: cover;
   background-position: center; 
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   padding: 40px 30px !important;
   border-radius: 60%;
   width: 70%;
@@ -91,15 +91,20 @@ header input {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 25px;
   height: 10%;
   font-family: "Quicksand", sans-serif;
   color: #fff;
   border-bottom: 2px dotted #fff;
   margin: 0 20%;
   font-weight: bold;
+  text-align: center;
   font-size: calc(8px + 1vw);
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5), 1px -1px 3px rgba(0, 0, 0, 0.5),
     -1px 1px 3px rgba(0, 0, 0, 0.5), -1px -1px 3px rgba(0, 0, 0, 0.5);
+}
+.login_description p {
+  padding-bottom: 10px;
 }
 .login_buttons {
   height: 30%;
