@@ -101,6 +101,34 @@ header {
     transition: 1s;
     right: -50px;
   }
+.message_icon {
+    color: white;
+    font-size: 50px;
+    position: absolute;
+    top: 1%;
+    right: 5%;
+}
+.message_page {
+    position: absolute;
+    z-index: 1;
+    margin: 20vh auto;
+    width: 60vw;
+    height: 60vh;
+    background-image: linear-gradient(#cc6b8e, #ffbda3);
+    border-radius: 10px;
+    border: 2px solid black;
+}
+.message_page_title {
+    text-align: center;
+    margin: 0 auto;
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px dotted white;
+    width: 80%;
+}
 .user_section {
     grid-area: user-section;
     display: block;
