@@ -1,4 +1,4 @@
-import { createTaskOfList } from "./userLists";
+import { createTaskOfList, getTasksOfList } from "./userLists";
 const form = document.querySelector(".add-task__form");
 const tasksList = document.querySelector('.tasks');
 
@@ -36,7 +36,8 @@ export const tasksFetch = async () => {
         done: false
       })
     );
-    console.log(itemsTask);
+    // console.log(itemsTask);
+    await getTasksOfList();
   } catch (err) {
     console.log("Error:", err.message);
   }

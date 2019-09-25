@@ -42,12 +42,11 @@ const getLists = async () => {
     }
     let myLists = document.querySelectorAll(".list-group-item");
     myLists[0].classList.add("active");
-    myLists.forEach(item =>
-      item.addEventListener("click", e => {
+    myLists.forEach(async item =>
+      item.addEventListener("click", async e => {
         myLists.forEach(element => element.classList.remove("active"));
         e.target.parentElement.classList.add("active");
-        getTasksOfList();
-        tasksFetch();
+        await tasksFetch();
       })
     );
   } catch (err) {
@@ -58,7 +57,7 @@ const getLists = async () => {
 export const getTasksOfList = async () => {
   const activeListId = await document.querySelector(".list-group-item.active")
     .dataset.id;
-  console.log(activeListId);
+  // console.log(activeListId);
 
   const request = new Request(
     "http://localhost:3000/api/my_lists/" + activeListId,
