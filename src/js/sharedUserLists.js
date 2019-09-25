@@ -54,19 +54,23 @@ const getLists = async () => {
     console.log("Error:", err.message);
   }
 };
-
 export const getTasksOfList = async () => {
-  const activeListId = await document.querySelector(".list-group-item.active")
-    .dataset.id;
+  const activeListId = await document.querySelector(".list-group-item.active");
   console.log(activeListId);
   
   const request = new Request(
-    "http://localhost:3000/api/shared_lists/" + activeListId,
+    "http://localhost:3000/api/shared_lists/" + activeListId.dataset.id,
     {
       method: "GET"
     }
   );
   try {
+    console.log(activeListId.textContent);
+    if ((document.querySelector(".active").textContent.includes("shared"))) {
+      document.querySelector(".add_task").style.display="none";
+    } else {
+      document.querySelector(".add_task").style.display="block";
+    };
     const data = await fetch(request);
     const list = await data.json();
     const tasks = [list.tasks];

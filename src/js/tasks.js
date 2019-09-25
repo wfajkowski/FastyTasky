@@ -72,7 +72,7 @@ export const sharedTasksFetch = async () => {
     const tasksList = document.querySelector(".tasks");
     // console.log(tasksArray);
     // console.log(tasksList);
-    populateList(tasksArray, tasksList, false);
+    populateList(tasksArray, tasksList, true);
     let addedTasks = await document.querySelectorAll("#taskList li");
     // console.log(addedTasks);
     await addedTasks.forEach(item =>{
@@ -131,14 +131,13 @@ export function populateList(tasks = [], tasksList, isShared) {
             <div id="single-task__title" for ="item${i}">
             <p class"task-text">${item.name}</p></div>
         </li>
-        `;
+        `
       } else {
       return `
     <li class=" task single-task${i} ${item.done ? "done" : "undone"}">
         <label class="container">
         <input type="checkbox" class="isChecked"  data-index=${i} id=item${i}" ${
-        item.done ? "checked" : ""
-      }>
+        item.done ? "checked" : ""}>
         <span class="checkmark"></span>
         </label>
         <div id="single-task__title" for ="item${i}">
@@ -146,7 +145,7 @@ export function populateList(tasks = [], tasksList, isShared) {
         <button class="item-task__remove"><i class="fa fa-trash"></i> </button>
         <button class="item-task__edit"><i class="fa fa-gear"></i> </button>
     </li>
-    `;
+    `
       }
     })
     .join("");
