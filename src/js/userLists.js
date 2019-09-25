@@ -69,6 +69,7 @@ export const chooseActiveList = () => {
       if (
         e.target.classList.contains("liText") ||
         e.target.classList.contains("delete") ||
+        e.target.classList.contains("share") ||
         e.target.classList.contains("edit")
       ) {
         e.target.parentElement.classList.add("active");
@@ -100,7 +101,7 @@ export const getTasksOfList = async () => {
   );
   try {
     const data = await fetch(request);
-    console.log(request);
+    // console.log(request);
     const list = await data.json();
     const tasks = [list.tasks];
     const tasksArray = tasks[0];
