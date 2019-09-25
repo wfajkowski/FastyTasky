@@ -1,4 +1,5 @@
 import { createTaskOfList, editTaskOfList } from "./userLists";
+import { editTaskOfSharedList } from "./sharedUserLists";
 const form = document.querySelector(".add-task__form");
 const tasksList = document.querySelector('.tasks');
 
@@ -53,11 +54,7 @@ export const sharedTasksFetch = async () => {
   const request = new Request(
     "http://localhost:3000/api/shared_lists/" + activeListId,
     {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "x-auth-token": token
-      }
+      method: "GET"
     }
   );
   try {

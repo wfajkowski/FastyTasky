@@ -87,7 +87,6 @@ export const chooseActiveList = () => {
 export const getTasksOfList = async () => {
   const token = localStorage.getItem("x-auth-token");
   const activeListId = await document.querySelector(".list-group-item.active")
-    .dataset.id;
 
   const request = new Request(
     "http://localhost:3000/api/my_lists/" + activeListId.dataset.id,

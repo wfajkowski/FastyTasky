@@ -39,6 +39,54 @@ router.get("/", auth, async (req, res) => {
     await sharedList.save();
     res.send(sharedList);
   });
+
+  router.put("/:id", async (req, res) => {
+    
+    const searchList = await ShareList.findById(req.params.id)
+    const searchedList = await ShareList.findByIdAndUpdate(
+      req.params.id,
+      {
+        title: searchList.title,
+        userId: searchList.userId,
+        name: searchList.name,
+        tasks: req.body.tasks.map(task => {
+          return {
+            name: task.name,
+            done: task.done
+          };
+        })
+      },
+
+    );
+    if (!searchedList)
+      return res
+        .status(404)
+        .send("ToDo list you are looking for does not exist.");
+    res.send(searchedList);
+  });
+
+  router.put("/:id", async (req, res) => {
+  
+    const searchedList = await ToDoList.findByIdAndUpdate(
+      req.params.id,
+      {
+        title: req.body.title,
+        // userId: user._id,
+        tasks: req.body.tasks.map(task => {
+          return {
+            name: task.name,
+            done: task.done
+          };
+        })
+      },
+      { new: true }
+    );
+    if (!searchedList)
+      return res
+        .status(404)
+        .send("ToDo list you are looking for does not exist.");
+    res.send(searchedList);
+  });
   
   router.delete("/:id", async (req, res) => {
     const searchedSharedList = await ShareList.findByIdAndRemove(req.params.id);

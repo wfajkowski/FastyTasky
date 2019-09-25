@@ -173,8 +173,6 @@ export const shareList = async () => {
       {
         method: "PUT",
         body: JSON.stringify({
-          title: activeListName,
-          // userId: "5d7e412fb184593eb44fb240",
           tasks: tab
         }),
         headers: {
