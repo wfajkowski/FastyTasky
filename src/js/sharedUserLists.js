@@ -75,7 +75,7 @@ export const getTasksOfList = async () => {
     const tasksList = document.querySelector(".tasks");
     // console.log(tasksArray);
     // console.log(tasksList);
-    populateList(tasksArray, tasksList);
+    populateList(tasksArray, tasksList, true);
   } catch (err) {
     console.log("Error:", err.message);
   }
@@ -143,4 +143,49 @@ export const shareList = async () => {
     } catch (err) {
       console.log("Error:", err.message);
     }
-  };  
+  };
+  
+  export const editTaskOfSharedList = async (taskToEdit) => {
+    const taskName = document.querySelector(".add-task__form #itemm").value;
+    const activeListId = await document.querySelector(".list-group-item.active")
+      .dataset.id;
+    const activeListName = await document.querySelector(
+      ".list-group-item.active p"
+    ).innerText;
+    let addedTasks = document.querySelectorAll("#taskList li p");
+    let tab = [];
+    // let editedTask = 
+    addedTasks.forEach(newitem =>{
+      console.log("newitem", newitem.parentElement.parentElement);
+      tab.push({
+        name: newitem.textContent,
+        done: newitem.parentElement.parentElement.classList.contains("done") ? true : false
+      })}
+    );
+    console.log("tab", tab);
+  
+    const request = new Request(
+      "http://localhost:3000/api/shared_lists/" + activeListId,
+      {
+        method: "PUT",
+        body: JSON.stringify({
+          title: activeListName,
+          // userId: "5d7e412fb184593eb44fb240",
+          tasks: tab
+        }),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }
+    );
+    try {
+      const data = await fetch(request);
+      const savedData = await data.json();
+      console.log(request);
+      console.log(savedData);
+  
+      return savedData;
+    } catch (err) {
+      console.log("Error:", err.message);
+    }
+  };

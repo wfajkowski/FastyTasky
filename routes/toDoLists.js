@@ -54,7 +54,7 @@ router.put("/:id", async (req, res) => {
       tasks: req.body.tasks.map(task => {
         return {
           name: task.name,
-          done: false
+          done: task.done
         };
       })
     },

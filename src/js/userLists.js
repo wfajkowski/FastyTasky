@@ -100,7 +100,7 @@ export const getTasksOfList = async () => {
     const tasksList = document.querySelector(".tasks");
     // console.log(tasksArray);
     // console.log(tasksList);
-    populateList(tasksArray, tasksList);
+    populateList(tasksArray, tasksList,false);
   } catch (err) {
     console.log("Error:", err.message);
   }

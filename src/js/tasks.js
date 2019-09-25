@@ -32,7 +32,7 @@ export const tasksFetch = async () => {
     const tasksList = document.querySelector(".tasks");
     // console.log(tasksArray);
     // console.log(tasksList);
-    populateList(tasksArray, tasksList);
+    populateList(tasksArray, tasksList, false);
     let addedTasks = await document.querySelectorAll("#taskList li");
     // console.log(addedTasks);
     await addedTasks.forEach(item =>{
@@ -47,6 +47,45 @@ export const tasksFetch = async () => {
   }
 }
 
+export const sharedTasksFetch = async () => {
+  const token = localStorage.getItem("x-auth-token");
+  itemsTask = [];
+  const activeListId = await document.querySelector(".list-group-item.active")
+    .dataset.id;
+  console.log(activeListId);
+  const request = new Request(
+    "http://localhost:3000/api/shared_lists/" + activeListId,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": token
+      }
+    }
+  );
+  try {
+    const data = await fetch(request);
+    const list = await data.json();
+    const tasks = [list.tasks];
+    // console.log(list);
+    const tasksArray = tasks[0];
+    const tasksList = document.querySelector(".tasks");
+    // console.log(tasksArray);
+    // console.log(tasksList);
+    populateList(tasksArray, tasksList, false);
+    let addedTasks = await document.querySelectorAll("#taskList li");
+    // console.log(addedTasks);
+    await addedTasks.forEach(item =>{
+      itemsTask.push({
+        name: item.querySelector("p").textContent,
+        done: item.classList.contains("done") ? true : false
+      });}
+    );
+    // console.log(itemsTask);
+  } catch (err) {
+    console.log("Error:", err.message);
+  }
+}
 
 
 
@@ -68,7 +107,7 @@ function addTask(event) {
   // console.log("itemsTask", itemsTask);
   // itemsTask = 
   itemsTask.push(item);
-  populateList(itemsTask, tasksList);
+  populateList(itemsTask, tasksList, false);
   createTaskOfList();
 // console.log(itemsTask);
   this.reset();
@@ -77,9 +116,23 @@ function addTask(event) {
 //################################
 // #########        ADD - NODE ELEMENTS TO NEW TASK      #############
 //#################################
-export function populateList(tasks = [], tasksList) {
+export function populateList(tasks = [], tasksList, isShared) {
   tasksList.innerHTML = tasks
     .map((item, i) => {
+      if (isShared === true){
+        return `
+        <li class=" task single-task${i} ${item.done ? "done" : "undone"}">
+            <label class="container">
+            <input type="checkbox" class="isChecked"  data-index=${i} id=item${i}" ${
+            item.done ? "checked" : ""
+          }>
+            <span class="checkmark"></span>
+            </label>
+            <div id="single-task__title" for ="item${i}">
+            <p class"task-text">${item.name}</p></div>
+        </li>
+        `;
+      } else {
       return `
     <li class=" task single-task${i} ${item.done ? "done" : "undone"}">
         <label class="container">
@@ -94,6 +147,7 @@ export function populateList(tasks = [], tasksList) {
         <button class="item-task__edit"><i class="fa fa-gear"></i> </button>
     </li>
     `;
+      }
     })
     .join("");
   
@@ -118,7 +172,7 @@ function toggleDone(event) {
   const index = el.dataset.index;
   console.log(itemsTask);
   itemsTask[index].done = !itemsTask[index].done;
-  populateList(itemsTask, tasksList);
+  populateList(itemsTask, tasksList, document.querySelector(".active").textContent.includes("shared"));
   // console.log(el.parentElement.parentElement);
   const toggledTask = el.parentElement.parentElement;
   if(toggledTask.classList.contains('done')){
@@ -127,8 +181,13 @@ function toggleDone(event) {
   } else {
     toggledTask.classList.remove("undone");
     toggledTask.classList.add("done");
+  } 
+  if(document.querySelector(".active").textContent.includes("shared")){
+    editTaskOfSharedList(toggledTask);
+  } else {
+    editTaskOfList(toggledTask);
   }
-  editTaskOfList(toggledTask);
+
 }
 
 tasksList.addEventListener("click", toggleDone);
