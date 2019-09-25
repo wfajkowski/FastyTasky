@@ -8,6 +8,7 @@ const tasksList = document.querySelector('.tasks');
 let itemsTask = [];
 
 export const tasksFetch = async () => {
+  const token = localStorage.getItem("x-auth-token");
   itemsTask = [];
   const activeListId = await document.querySelector(".list-group-item.active")
     .dataset.id;
@@ -15,7 +16,11 @@ export const tasksFetch = async () => {
   const request = new Request(
     "http://localhost:3000/api/my_lists/" + activeListId,
     {
-      method: "GET"
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": token
+      }
     }
   );
   try {
@@ -28,15 +33,15 @@ export const tasksFetch = async () => {
     // console.log(tasksArray);
     // console.log(tasksList);
     populateList(tasksArray, tasksList);
-    let addedTasks = await document.querySelectorAll("#taskList li p");
+    let addedTasks = await document.querySelectorAll("#taskList li");
     // console.log(addedTasks);
-    await addedTasks.forEach(item =>
+    await addedTasks.forEach(item =>{
       itemsTask.push({
-        name: item.textContent,
-        done: false
-      })
+        name: item.querySelector("p").textContent,
+        done: item.classList.contains("done") ? true : false
+      });}
     );
-    console.log(itemsTask);
+    // console.log(itemsTask);
   } catch (err) {
     console.log("Error:", err.message);
   }
@@ -59,7 +64,8 @@ function addTask(event) {
     name,
     done: false
   };
-  console.log(item);
+  // console.log("item", item);
+  // console.log("itemsTask", itemsTask);
   // itemsTask = 
   itemsTask.push(item);
   populateList(itemsTask, tasksList);
@@ -144,6 +150,7 @@ function deleteTask(event) {
        tasksList.removeChild(li);
        let index = itemsTask.indexOf(item.textContent);
        itemsTask.splice(index,1);
+       createTaskOfList();
       }
      } else if (event.target.classList.contains("fa-trash")) {
       if (confirm("Are You Sure?")) {
@@ -152,6 +159,7 @@ function deleteTask(event) {
         tasksList.removeChild(li);
         let index = itemsTask.indexOf(item.textContent);
        itemsTask.splice(index,1);
+       createTaskOfList();
       }
     }
    }
