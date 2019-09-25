@@ -1,7 +1,8 @@
 import {
   createList,
   deleteList,
-  editList /* updateListName */
+  editList,
+  chooseActiveList /* updateListName */
 } from "./userLists";
 
 let form = document.getElementById("adding_panel");
@@ -39,6 +40,7 @@ function addItem(e) {
   li.appendChild(editBtn);
   itemList.appendChild(li);
   //  console.log(tab)
+  chooseActiveList();
   //  console.log(tab.indexOf(newItem))
   let x = document.getElementById("item");
   createList();
@@ -65,7 +67,6 @@ function editItem(e) {
   if (e.target.classList.contains("edit")) {
     if (confirm("Do you want to edit this item?")) {
       let li = e.target.parentElement;
-      console.log(li)
       li.contentEditable = "true";
       window.addEventListener("keypress", e => {
         if (e.keyCode == 13) {
