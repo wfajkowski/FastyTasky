@@ -730,6 +730,84 @@ button:focus {
   background-color: #88719dab;
   cursor: pointer;
 }
+.name_div {
+  position: absolute;
+  background-image: linear-gradient(
+    to top,
+    #5e4c6f,
+    #68557a,
+    #735e86,
+    #7d6891,
+    #88719d
+  );
+  width: 20vw;
+  min-width: 200px;
+  height: 20vh;
+  min-height: 150px;
+  top: 40vh;
+  left: 40vw;
+  text-align: center;
+  align-self: center;
+  display: grid;
+  justify-items: center;
+  border-radius: 10px;
+  border: 2px solid #fff;
+  z-index: 3;
+}
+.name_div p {
+  width: 80%;
+  color: #fff;
+  font-size: 18px;
+}
+.name_div input {
+  width: 70%;
+  height: 30px;
+  font-size: 16px;
+  text-align: center;
+  border-radius: 10px;
+  border: 2px solid #fff;
+  background-color: #cc6b8e;
+  background-image: linear-gradient(
+    to bottom,
+    #cc6b8e,
+    #ec7aa4,
+    #faa380
+  );
+  font-family: "Quicksand", sans-serif;
+  color: #fff;
+}
+.name_div input:focus {
+  outline: none;
+}
+.name_div button {
+  width: 50%;
+  height: 30px;
+  border-radius: 10px;
+  border: 2px solid #fff;
+  color: #fff;
+  font-family: "Quicksand", sans-serif;
+  background-image: linear-gradient(
+    to top,
+    #5e4c6f,
+    #68557a,
+    #735e86,
+    #7d6891,
+    #88719d
+  );
+  transition: 1s;
+}
+.name_div button:focus {
+  width: 51%;
+  height: 32px;
+  background-image: linear-gradient(
+    to bottom,
+    #6f4c59,
+    #68557a,
+    #735e86,
+    #7d6891,
+    #88719d
+  );
+}
 
 @media (max-width: 700px) {
   .login_box,
@@ -805,6 +883,7 @@ button:focus {
     font-size: 18px;
   }
 }
+
 @media (max-width: 1100px) {
   .list-group li button {
     right: 2%;
