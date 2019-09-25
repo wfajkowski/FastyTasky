@@ -534,13 +534,37 @@ button:focus {
   margin: 5px;
 }
 .task:hover {
-  background-color: #e0e0e057;
+  background-color: #e0e0e079;
 }
 .tasks {
   padding: 0px 20px 0 20px;
   margin: 10px 0;
   overflow: hidden;
   margin: 0;
+}
+.done {
+  text-decoration: line-through;
+  color: rgb(32, 32, 32);
+  transition: 1s;
+  /* background-color: #88719d8c; */
+  background-image: linear-gradient(to top,
+      #5e4c6f60,
+      #68557a60,
+      #735e8660,
+      #7d689160,
+      #88719d60);
+  border-radius: 10px;
+}
+.undone {
+  transition: 1s;
+  /* background-color: #51435c9c; */
+  background-image: linear-gradient(to top,
+      #5e4c6fa0,
+      #68557aa0,
+      #735e86a0,
+      #7d6891a0,
+      #88719da0);
+  border-radius: 10px;
 }
 .task button {
   background-color: rgba(145, 145, 145, 0);

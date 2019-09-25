@@ -1,7 +1,8 @@
 import {
   createList,
   deleteList,
-  editList /* updateListName */
+  editList,
+  chooseActiveList /* updateListName */
 } from "./userLists";
 import { shareList, deleteSharedList } from "./sharedUserLists";
 
@@ -48,6 +49,7 @@ function addItem(e) {
   li.appendChild(editBtn);
   itemList.appendChild(li);
   //  console.log(tab)
+  chooseActiveList();
   //  console.log(tab.indexOf(newItem))
   let x = document.getElementById("item");
   createList();

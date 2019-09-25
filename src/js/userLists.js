@@ -20,6 +20,7 @@ const getLists = async () => {
     const data = await fetch(request);
     const lists = await data.json();
     const myToDos = [...lists];
+    if(!myToDos) return;
     console.log(myToDos);
     for (let i = 0; i < myToDos.length; i++) {
       let li = document.createElement("li");
@@ -53,32 +54,39 @@ const getLists = async () => {
       itemList.appendChild(li);
       tab.push(li.textContent);
     }
-    let myLists = document.querySelectorAll(".list-group-item");
-    console.log("mylists", myLists);
-    myLists[0].classList.add("active");
-    myLists.forEach(item =>
-      item.addEventListener("click", e => {
-        myLists.forEach(element => element.classList.remove("active"));
-        // console.log('cel pal', e.target);
-        if (e.target.classList.contains("liText")){
-          e.target.parentElement.classList.add("active");
-        } else {
-          e.target.classList.add("active");
-        }
-        getTasksOfList();
-        tasksFetch();
-      })
-    );
+    chooseActiveList();
   } catch (err) {
     console.log("Error:", err.message);
   }
 };
 
+export const chooseActiveList = () => {
+  let myLists = document.querySelectorAll(".list-group-item");
+  myLists[0].classList.add("active");
+  myLists.forEach(item =>
+    item.addEventListener("click", e => {
+      myLists.forEach(element => element.classList.remove("active"));
+      if (
+        e.target.classList.contains("liText") ||
+        e.target.classList.contains("delete") ||
+        e.target.classList.contains("edit")
+      ) {
+        e.target.parentElement.classList.add("active");
+      } else if (e.target.classList.contains("list-group-item")) {
+        e.target.classList.add("active");
+      } else {
+        e.target.parentElement.parentElement.classList.add("active");
+      }
+      getTasksOfList();
+      tasksFetch();
+    })
+  );
+}
+
 export const getTasksOfList = async () => {
   const token = localStorage.getItem("x-auth-token");
   const activeListId = await document.querySelector(".list-group-item.active")
     .dataset.id;
-  console.log('activeListId', activeListId);
 
   const request = new Request(
     "http://localhost:3000/api/my_lists/" + activeListId,
@@ -95,7 +103,6 @@ export const getTasksOfList = async () => {
     console.log(request);
     const list = await data.json();
     const tasks = [list.tasks];
-    // console.log(list);
     const tasksArray = tasks[0];
     const tasksList = document.querySelector(".tasks");
     // console.log(tasksArray);
@@ -113,7 +120,7 @@ export const createList = async () => {
     method: "POST",
     body: JSON.stringify({
       title: listTitle,
-      userId: "5d8a9742ed11123d4d229430",
+      // userId: "5d82a884811f4f1dcc8aeec3",
       tasks: []
     }),
     headers: {
@@ -147,51 +154,6 @@ export const createTaskOfList = async () => {
       done: item.classList.contains("done") ? true : false
     })
   );
-  // console.log("tab", tab);
-
-  const request = new Request(
-    "http://localhost:3000/api/my_lists/" + activeListId,
-    {
-      method: "PUT",
-      body: JSON.stringify({
-        title: activeListName,
-        // userId: "5d7e412fb184593eb44fb240",
-        tasks: tab
-      }),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    }
-  );
-  try {
-    const data = await fetch(request);
-    const savedData = await data.json();
-    console.log(savedData);
-
-    return savedData;
-  } catch (err) {
-    console.log("Error:", err.message);
-  }
-};
-
-export const editTaskOfList = async (taskToEdit) => {
-  const taskName = document.querySelector(".add-task__form #itemm").value;
-  const activeListId = await document.querySelector(".list-group-item.active")
-    .dataset.id;
-  const activeListName = await document.querySelector(
-    ".list-group-item.active p"
-  ).innerText;
-  let addedTasks = document.querySelectorAll("#taskList li p");
-  let tab = [];
-  // let editedTask = 
-  addedTasks.forEach(newitem =>{
-    console.log("newitem", newitem.parentElement.parentElement);
-    tab.push({
-      name: newitem.textContent,
-      done: newitem.parentElement.parentElement.classList.contains("done") ? true : false
-    })}
-  );
-  console.log("tab", tab);
 
   const request = new Request(
     "http://localhost:3000/api/my_lists/" + activeListId,
@@ -219,29 +181,47 @@ export const editTaskOfList = async (taskToEdit) => {
   }
 };
 
-// export const updateListName = async element => {
-//   const request = new Request(
-//     "http://localhost:3000/api/my_lists/" + element.dataset.id,
-//     {
-//       method: "PUT",
-//       body: JSON.stringify({
-//         title: element.textContent,
-//         userId: "5d7e412fb184593eb44fb240",
-//         tasks: []
-//       }),
-//       headers: {
-//         "Content-Type": "application/json"
-//       }
-//     }
-//   );
-//   try {
-//     const data = await fetch(request);
-//     const savedData = await data.json();
-//     return savedData;
-//   } catch (err) {
-//     console.log("Error:", err.message);
-//   }
-// };
+export const editTaskOfList = async (taskToEdit) => {
+  const taskName = document.querySelector(".add-task__form #itemm").value;
+  const activeListId = await document.querySelector(".list-group-item.active")
+    .dataset.id;
+  const activeListName = await document.querySelector(
+    ".list-group-item.active p"
+  ).innerText;
+  let addedTasks = document.querySelectorAll("#taskList li p");
+  let tab = [];
+  // let editedTask = 
+  addedTasks.forEach(newitem =>{
+    tab.push({
+      name: newitem.textContent,
+      done: newitem.parentElement.parentElement.classList.contains("done") ? true : false
+    })}
+  );
+
+  const request = new Request(
+    "http://localhost:3000/api/my_lists/" + activeListId,
+    {
+      method: "PUT",
+      body: JSON.stringify({
+        title: activeListName,
+        // userId: "5d7e412fb184593eb44fb240",
+        tasks: tab
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }
+  );
+  try {
+    const data = await fetch(request);
+    const savedData = await data.json();
+    console.log(savedData);
+
+    return savedData;
+  } catch (err) {
+    console.log("Error:", err.message);
+  }
+};
 
 export const deleteList = async element => {
   const request = new Request(

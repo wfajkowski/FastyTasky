@@ -10,6 +10,7 @@ let itemsTask = [];
 export const tasksFetch = async () => {
   const token = localStorage.getItem("x-auth-token");
   itemsTask = [];
+  if(!document.querySelector('.list-group-item')) return;
   const activeListId = await document.querySelector(".list-group-item.active")
     .dataset.id;
   console.log(activeListId);
@@ -27,21 +28,16 @@ export const tasksFetch = async () => {
     const data = await fetch(request);
     const list = await data.json();
     const tasks = [list.tasks];
-    // console.log(list);
     const tasksArray = tasks[0];
     const tasksList = document.querySelector(".tasks");
-    // console.log(tasksArray);
-    // console.log(tasksList);
-    populateList(tasksArray, tasksList, false);
+    populateList(tasksArray, tasksList);
     let addedTasks = await document.querySelectorAll("#taskList li");
-    // console.log(addedTasks);
     await addedTasks.forEach(item =>{
       itemsTask.push({
         name: item.querySelector("p").textContent,
         done: item.classList.contains("done") ? true : false
       });}
     );
-    // console.log(itemsTask);
   } catch (err) {
     console.log("Error:", err.message);
   }
@@ -50,6 +46,7 @@ export const tasksFetch = async () => {
 export const sharedTasksFetch = async () => {
   const token = localStorage.getItem("x-auth-token");
   itemsTask = [];
+  if (!document.querySelector(".list-group-item")) return;
   const activeListId = await document.querySelector(".list-group-item.active")
     .dataset.id;
   console.log(activeListId);
