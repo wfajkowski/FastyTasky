@@ -17,8 +17,13 @@ Sortable.create(el, {
 });
 
 const getAndUpdateTasksOfList = async (listId, index) => {
+  const token = localStorage.getItem("x-auth-token");
   const request = new Request("http://localhost:3000/api/my_lists/" + listId, {
-    method: "GET"
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "x-auth-token": token
+    }
   });
   try {
     const data = await fetch(request);
