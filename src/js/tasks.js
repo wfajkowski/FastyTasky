@@ -1,4 +1,4 @@
-import { createTaskOfList } from "./userLists";
+import { createTaskOfList, editTaskOfList } from "./userLists";
 const form = document.querySelector(".add-task__form");
 const tasksList = document.querySelector('.tasks');
 
@@ -75,11 +75,11 @@ export function populateList(tasks = [], tasksList) {
   tasksList.innerHTML = tasks
     .map((item, i) => {
       return `
-    <li class=" task single-task${i}">
+    <li class=" task single-task${i} ${item.done ? "done" : "undone"}">
         <label class="container">
         <input type="checkbox" class="isChecked"  data-index=${i} id=item${i}" ${
-          item.done ? "checked" : ""
-        }>
+        item.done ? "checked" : ""
+      }>
         <span class="checkmark"></span>
         </label>
         <div id="single-task__title" for ="item${i}">
@@ -113,8 +113,16 @@ function toggleDone(event) {
   console.log(itemsTask);
   itemsTask[index].done = !itemsTask[index].done;
   populateList(itemsTask, tasksList);
-
-
+  // console.log(el.parentElement.parentElement);
+  const toggledTask = el.parentElement.parentElement;
+  if(toggledTask.classList.contains('done')){
+    toggledTask.classList.remove('done');
+    toggledTask.classList.add('undone');
+  } else {
+    toggledTask.classList.remove("undone");
+    toggledTask.classList.add("done");
+  }
+  editTaskOfList(toggledTask);
 }
 
 tasksList.addEventListener("click", toggleDone);
@@ -155,12 +163,14 @@ function editItem(event) {
   if (event.target.classList.contains("item-task__edit")) {
     if (confirm("Do you want to edit this task?")) {
       let li = event.target.parentElement;
+      console.log("tu jestem!", li);
       li.contentEditable = "true";
       window.addEventListener("keypress", event => {
         if (event.keyCode == 13) {
           itemsTask.push(li.textContent);
           li.contentEditable = "false";
           // console.log(itemsTask);
+          editTaskOfList(li);
         }
       })
     }
@@ -168,10 +178,12 @@ function editItem(event) {
       if (confirm("Do you want to edit this task?")) {
         let buttonClick = event.target.parentElement;
         let li = buttonClick.parentElement;
+        console.log("tu jestem!", li);
         li.contentEditable = "true";
         window.addEventListener("keypress", e => {
           if (e.keyCode == 13) {
             li.contentEditable = "false";
+            editTaskOfList(li);
           }
         });
       }
