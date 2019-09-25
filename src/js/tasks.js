@@ -1,4 +1,4 @@
-import { createTaskOfList } from "./userLists";
+import { createTaskOfList, editTaskOfList } from "./userLists";
 const form = document.querySelector(".add-task__form");
 const tasksList = document.querySelector('.tasks');
 
@@ -8,6 +8,7 @@ const tasksList = document.querySelector('.tasks');
 let itemsTask = [];
 
 export const tasksFetch = async () => {
+  const token = localStorage.getItem("x-auth-token");
   itemsTask = [];
   const activeListId = await document.querySelector(".list-group-item.active")
     .dataset.id;
@@ -15,7 +16,11 @@ export const tasksFetch = async () => {
   const request = new Request(
     "http://localhost:3000/api/my_lists/" + activeListId,
     {
-      method: "GET"
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": token
+      }
     }
   );
   try {
@@ -28,15 +33,15 @@ export const tasksFetch = async () => {
     // console.log(tasksArray);
     // console.log(tasksList);
     populateList(tasksArray, tasksList);
-    let addedTasks = await document.querySelectorAll("#taskList li p");
+    let addedTasks = await document.querySelectorAll("#taskList li");
     // console.log(addedTasks);
-    await addedTasks.forEach(item =>
+    await addedTasks.forEach(item =>{
       itemsTask.push({
-        name: item.textContent,
-        done: false
-      })
+        name: item.querySelector("p").textContent,
+        done: item.classList.contains("done") ? true : false
+      });}
     );
-    console.log(itemsTask);
+    // console.log(itemsTask);
   } catch (err) {
     console.log("Error:", err.message);
   }
@@ -59,7 +64,8 @@ function addTask(event) {
     name,
     done: false
   };
-  console.log(item);
+  // console.log("item", item);
+  // console.log("itemsTask", itemsTask);
   // itemsTask = 
   itemsTask.push(item);
   populateList(itemsTask, tasksList);
@@ -75,11 +81,11 @@ export function populateList(tasks = [], tasksList) {
   tasksList.innerHTML = tasks
     .map((item, i) => {
       return `
-    <li class=" task single-task${i}">
+    <li class=" task single-task${i} ${item.done ? "done" : "undone"}">
         <label class="container">
         <input type="checkbox" class="isChecked"  data-index=${i} id=item${i}" ${
-          item.done ? "checked" : ""
-        }>
+        item.done ? "checked" : ""
+      }>
         <span class="checkmark"></span>
         </label>
         <div id="single-task__title" for ="item${i}">
@@ -113,8 +119,16 @@ function toggleDone(event) {
   console.log(itemsTask);
   itemsTask[index].done = !itemsTask[index].done;
   populateList(itemsTask, tasksList);
-
-
+  // console.log(el.parentElement.parentElement);
+  const toggledTask = el.parentElement.parentElement;
+  if(toggledTask.classList.contains('done')){
+    toggledTask.classList.remove('done');
+    toggledTask.classList.add('undone');
+  } else {
+    toggledTask.classList.remove("undone");
+    toggledTask.classList.add("done");
+  }
+  editTaskOfList(toggledTask);
 }
 
 tasksList.addEventListener("click", toggleDone);
@@ -136,6 +150,7 @@ function deleteTask(event) {
        tasksList.removeChild(li);
        let index = itemsTask.indexOf(item.textContent);
        itemsTask.splice(index,1);
+       createTaskOfList();
       }
      } else if (event.target.classList.contains("fa-trash")) {
       if (confirm("Are You Sure?")) {
@@ -144,6 +159,7 @@ function deleteTask(event) {
         tasksList.removeChild(li);
         let index = itemsTask.indexOf(item.textContent);
        itemsTask.splice(index,1);
+       createTaskOfList();
       }
     }
    }
@@ -155,12 +171,14 @@ function editItem(event) {
   if (event.target.classList.contains("item-task__edit")) {
     if (confirm("Do you want to edit this task?")) {
       let li = event.target.parentElement;
+      console.log("tu jestem!", li);
       li.contentEditable = "true";
       window.addEventListener("keypress", event => {
         if (event.keyCode == 13) {
           itemsTask.push(li.textContent);
           li.contentEditable = "false";
           // console.log(itemsTask);
+          editTaskOfList(li);
         }
       })
     }
@@ -168,10 +186,12 @@ function editItem(event) {
       if (confirm("Do you want to edit this task?")) {
         let buttonClick = event.target.parentElement;
         let li = buttonClick.parentElement;
+        console.log("tu jestem!", li);
         li.contentEditable = "true";
         window.addEventListener("keypress", e => {
           if (e.keyCode == 13) {
             li.contentEditable = "false";
+            editTaskOfList(li);
           }
         });
       }

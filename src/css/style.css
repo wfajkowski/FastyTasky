@@ -351,7 +351,7 @@ button:focus {
   background-color: #88719d;
   display: grid;
   margin: 0;
-  grid-template-columns: auto 1fr min-content min-content;
+  grid-template-columns: auto 1fr min-content min-content min-content;
   align-items: center;
   position: relative;
   box-sizing: border-box;
@@ -567,7 +567,8 @@ button:focus {
   font-size: 10px;
 }
 .add_task input,
-.logout_button {
+.logout_button,
+.message_icon {
   margin-left: 20px;
   width: 100%;
   font-size: 15px;
@@ -681,6 +682,18 @@ button:focus {
   height: 35px;
   width: 35px;
   right: 0px;
+  top: 0px;
+  font-size: 22px;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  display: none;
+  margin: 10px 20px 0 20px;
+}
+.message_icon {
+  position: absolute;
+  height: 35px;
+  width: 35px;
+  right: 40px;
   top: 0px;
   font-size: 22px;
   border: 2px solid #fff;

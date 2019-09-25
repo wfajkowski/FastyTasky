@@ -1,13 +1,20 @@
 import { populateList, tasksFetch } from "./tasks";
-
 let itemList = document.getElementById("items");
 
 let tab = [];
 
 const getLists = async () => {
-  const request = new Request("http://localhost:3000/api/my_lists", {
-    method: "GET"
-  });
+  const token = localStorage.getItem("x-auth-token");
+  const request = new Request(
+    "http://localhost:3000/api/my_lists/",
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": token
+      }
+    }
+  );
 
   try {
     const data = await fetch(request);
@@ -25,14 +32,20 @@ const getLists = async () => {
       liText.className = "liText";
       liText.appendChild(document.createTextNode(myToDos[i].title));
       li.appendChild(liText);
+      let shareBtn = document.createElement("button");
+      let shareIcon = document.createElement("i");
       let deleteBtn = document.createElement("button");
       let deleteIcon = document.createElement("i");
       let editBtn = document.createElement("button");
       let editIcon = document.createElement("i");
+      shareBtn.className = "btn share";
+      shareIcon.className = "fa fa-share";
       deleteBtn.className = "btn delete";
       deleteIcon.className = "fa fa-trash";
       editBtn.className = "btn edit";
       editIcon.className = "fa fa-gear";
+      shareBtn.appendChild(shareIcon);
+      li.appendChild(shareBtn);
       deleteBtn.appendChild(deleteIcon);
       li.appendChild(deleteBtn);
       editBtn.appendChild(editIcon);
@@ -41,11 +54,17 @@ const getLists = async () => {
       tab.push(li.textContent);
     }
     let myLists = document.querySelectorAll(".list-group-item");
+    console.log("mylists", myLists);
     myLists[0].classList.add("active");
     myLists.forEach(item =>
       item.addEventListener("click", e => {
         myLists.forEach(element => element.classList.remove("active"));
-        e.target.parentElement.classList.add("active");
+        // console.log('cel pal', e.target);
+        if (e.target.classList.contains("liText")){
+          e.target.parentElement.classList.add("active");
+        } else {
+          e.target.classList.add("active");
+        }
         getTasksOfList();
         tasksFetch();
       })
@@ -56,18 +75,24 @@ const getLists = async () => {
 };
 
 export const getTasksOfList = async () => {
+  const token = localStorage.getItem("x-auth-token");
   const activeListId = await document.querySelector(".list-group-item.active")
     .dataset.id;
-  console.log(activeListId);
+  console.log('activeListId', activeListId);
 
   const request = new Request(
     "http://localhost:3000/api/my_lists/" + activeListId,
     {
-      method: "GET"
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": token
+      }
     }
   );
   try {
     const data = await fetch(request);
+    console.log(request);
     const list = await data.json();
     const tasks = [list.tasks];
     // console.log(list);
@@ -82,16 +107,18 @@ export const getTasksOfList = async () => {
 };
 
 export const createList = async () => {
+  const token = localStorage.getItem("x-auth-token");
   const listTitle = document.querySelector("#adding_panel #item").value;
   const request = new Request("http://localhost:3000/api/my_lists", {
     method: "POST",
     body: JSON.stringify({
       title: listTitle,
-      userId: "5d82a884811f4f1dcc8aeec3",
+      userId: "5d8a9742ed11123d4d229430",
       tasks: []
     }),
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "x-auth-token": token
     }
   });
   try {
@@ -111,13 +138,58 @@ export const createTaskOfList = async () => {
   const activeListName = await document.querySelector(
     ".list-group-item.active p"
   ).innerText;
-  let addedTasks = document.querySelectorAll("#taskList li p");
+  let addedTasks = document.querySelectorAll("#taskList li");
   let tab = [];
+  // console.log("addedTasks", addedTasks);
   addedTasks.forEach(item =>
     tab.push({
-      name: item.textContent,
-      done: false
+      name: item.querySelector('p').textContent,
+      done: item.classList.contains("done") ? true : false
     })
+  );
+  // console.log("tab", tab);
+
+  const request = new Request(
+    "http://localhost:3000/api/my_lists/" + activeListId,
+    {
+      method: "PUT",
+      body: JSON.stringify({
+        title: activeListName,
+        // userId: "5d7e412fb184593eb44fb240",
+        tasks: tab
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }
+  );
+  try {
+    const data = await fetch(request);
+    const savedData = await data.json();
+    console.log(savedData);
+
+    return savedData;
+  } catch (err) {
+    console.log("Error:", err.message);
+  }
+};
+
+export const editTaskOfList = async (taskToEdit) => {
+  const taskName = document.querySelector(".add-task__form #itemm").value;
+  const activeListId = await document.querySelector(".list-group-item.active")
+    .dataset.id;
+  const activeListName = await document.querySelector(
+    ".list-group-item.active p"
+  ).innerText;
+  let addedTasks = document.querySelectorAll("#taskList li p");
+  let tab = [];
+  // let editedTask = 
+  addedTasks.forEach(newitem =>{
+    console.log("newitem", newitem.parentElement.parentElement);
+    tab.push({
+      name: newitem.textContent,
+      done: newitem.parentElement.parentElement.classList.contains("done") ? true : false
+    })}
   );
   console.log("tab", tab);
 
@@ -138,6 +210,7 @@ export const createTaskOfList = async () => {
   try {
     const data = await fetch(request);
     const savedData = await data.json();
+    console.log(request);
     console.log(savedData);
 
     return savedData;
@@ -188,6 +261,7 @@ export const deleteList = async element => {
 };
 
 export const editList = async element => {
+  console.log('element', element);
   const listTitle = element.textContent;
   const request = new Request(
     "http://localhost:3000/api/my_lists/" + element.dataset.id,
@@ -195,11 +269,11 @@ export const editList = async element => {
       method: "PUT",
       body: JSON.stringify({
         title: listTitle,
-        userId: "5d7e412fb184593eb44fb240",
+        // userId: "5d7e412fb184593eb44fb240",
         tasks: []
       }),
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       }
     }
   );

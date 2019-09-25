@@ -3,6 +3,7 @@ import {
   deleteList,
   editList /* updateListName */
 } from "./userLists";
+import { shareList, deleteSharedList } from "./sharedUserLists";
 
 let form = document.getElementById("adding_panel");
 let itemList = document.getElementById("items");
@@ -12,6 +13,7 @@ let editButton = document.getElementsByClassName("edit");
 form.addEventListener("submit", addItem);
 itemList.addEventListener("click", removeItem);
 itemList.addEventListener("click", editItem);
+itemList.addEventListener("click", shareItem);
 
 function addItem(e) {
   e.preventDefault();
@@ -25,14 +27,21 @@ function addItem(e) {
   liText.className = "liText";
   li.appendChild(liText);
   liText.appendChild(document.createTextNode(newItem));
+  li.appendChild(liText);
+  var shareBtn = document.createElement("button");
+  var shareIcon = document.createElement("i");
   var deleteBtn = document.createElement("button");
   var deleteIcon = document.createElement("i");
   var editBtn = document.createElement("button");
   var editIcon = document.createElement("i");
+  shareBtn.className = "btn share";
+  shareIcon.className = "fa fa-share";
   deleteBtn.className = "btn delete";
   deleteIcon.className = "fa fa-trash";
   editBtn.className = "btn edit";
   editIcon.className = "fa fa-gear";
+  shareBtn.appendChild(shareIcon);
+  li.appendChild(shareBtn);
   deleteBtn.appendChild(deleteIcon);
   li.appendChild(deleteBtn);
   editBtn.appendChild(editIcon);
@@ -50,6 +59,7 @@ function removeItem(e) {
     if (confirm("Are You Sure?")) {
       let li = e.target.parentElement;
       deleteList(li);
+      deleteSharedList(li);
       itemList.removeChild(li);
     }
   } else if (e.target.classList.contains("fa-trash")) {
@@ -57,6 +67,7 @@ function removeItem(e) {
       let buttonClick = e.target.parentElement;
       let li = buttonClick.parentElement;
       deleteList(li);
+      deleteSharedList(li);
       itemList.removeChild(li);
     }
   }
@@ -91,3 +102,109 @@ function editItem(e) {
     }
   }
 }
+
+function shareItem(e) {
+  if (e.target.classList.contains("share")) {
+    let name_div = document.createElement("div");
+    let name_title = document.createElement("p");
+    let name_input = document.createElement("input");
+    let name_button = document.createElement("button");
+    name_div.appendChild(name_title);
+    name_div.appendChild(name_input);
+    name_div.appendChild(name_button);
+    name_div.setAttribute("class", "name_div");
+    name_title.textContent = "Put user name";
+    name_button.textContent = "Accept";
+    name_div.style.position="absolute";
+    name_div.style.backgroundColor="yellow";
+    name_div.style.width="20vw";
+    name_div.style.minWidth="200px";
+    name_div.style.height="20vh";
+    name_div.style.minHeight="150px";
+    name_div.style.top="40vh";
+    name_div.style.left="40vw";
+    name_div.style.textAlign="center";
+    name_div.style.alignSelf="center";
+    name_div.style.display="grid";
+    name_div.style.alignItems="space-between";
+    name_div.style.justifyItems="center";
+    name_div.style.borderRadius="10px";
+    name_div.style.border="2px solid white";
+    name_div.style.zIndex="3";
+    name_title.style.width="80%";
+    name_input.style.width="70%";
+    name_input.style.height="30px";
+    name_input.style.textAlign="center";
+    name_button.style.width="50%";
+    name_button.style.height="30px";
+    document.querySelector("body").appendChild(name_div);
+    name_button.addEventListener("click", function () {
+      name_div.style.display="none";
+      if (confirm("Do you want to share this item?")) {
+        let buttonClick = e.target.parentElement;
+        let lit2 = buttonClick.parentElement;
+        console.log(lit2);
+        shareList(lit2);
+        document.querySelector("body").removeChild(name_div)
+      } else {
+        document.querySelector("body").removeChild(name_div)
+      }})
+  } else if (e.target.classList.contains("fa-share")) {
+    let name_div = document.createElement("div");
+    let name_title = document.createElement("p");
+    let name_input = document.createElement("input");
+    let name_button = document.createElement("button");
+    name_div.appendChild(name_title);
+    name_div.appendChild(name_input);
+    name_div.appendChild(name_button);
+    name_div.setAttribute("class", "name_div");
+    name_title.textContent = "Put user name";
+    name_button.textContent = "Accept";
+    name_div.style.position="absolute";
+    name_div.style.backgroundColor="yellow";
+    name_div.style.width="20vw";
+    name_div.style.minWidth="200px";
+    name_div.style.height="20vh";
+    name_div.style.minHeight="150px";
+    name_div.style.top="40vh";
+    name_div.style.left="40vw";
+    name_div.style.textAlign="center";
+    name_div.style.alignSelf="center";
+    name_div.style.display="grid";
+    name_div.style.alignItems="space-between";
+    name_div.style.justifyItems="center";
+    name_div.style.borderRadius="10px";
+    name_div.style.border="2px solid white";
+    name_div.style.zIndex="3";
+    name_title.style.width="80%";
+    name_input.style.width="70%";
+    name_input.style.height="30px";
+    name_input.style.textAlign="center";
+    name_button.style.width="50%";
+    name_button.style.height="30px";
+    document.querySelector("body").appendChild(name_div);
+    name_button.addEventListener("click", function () {
+      name_div.style.display="none";
+      if (confirm("Do you want to share this item?")) {
+        let buttonClick = e.target.parentElement;
+        let lit2 = buttonClick.parentElement;
+        console.log(lit2);
+        shareList(lit2);
+        document.querySelector("body").removeChild(name_div)
+      } else {
+        document.querySelector("body").removeChild(name_div)
+      }})
+  }
+    /*(e.target.classList.contains("fa-share")) {
+      if (confirm("Do you want to share this item?")) {
+      let buttonClick = e.target.parentElement;
+      let lit2 = buttonClick.parentElement;
+      console.log(lit2);
+      shareList(lit2);
+          // tab.push(li.textContent);
+          // console.log(tab);
+          // updateListName(li);
+          // li.contentEditable = 'false';
+      }
+    };*/
+  }

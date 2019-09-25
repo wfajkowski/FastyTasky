@@ -7,9 +7,10 @@ const router = express.Router();
 
 router.get(
   "/",
-  /*auth,*/ async (req, res) => {
-    // const user = await User.findById(req.user._id);
-    const toDoLists = await ToDoList.find(/*user*/).sort("index");
+  auth, async (req, res) => {
+    const toDoLists = await ToDoList.find({
+      userId: { $eq: req.user._id }
+    }).sort("index");
     res.send(toDoLists);
   }
 );
