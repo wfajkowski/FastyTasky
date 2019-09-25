@@ -90,7 +90,7 @@ export const getTasksOfList = async () => {
     .dataset.id;
 
   const request = new Request(
-    "http://localhost:3000/api/my_lists/" + activeListId,
+    "http://localhost:3000/api/my_lists/" + activeListId.dataset.id,
     {
       method: "GET",
       headers: {
@@ -100,6 +100,11 @@ export const getTasksOfList = async () => {
     }
   );
   try {
+    if ((document.querySelector(".active").textContent.includes("shared"))) {
+      document.querySelector(".add_task").style.display="none";
+    } else {
+      document.querySelector(".add_task").style.display="block";
+    };
     const data = await fetch(request);
     // console.log(request);
     const list = await data.json();
@@ -108,7 +113,7 @@ export const getTasksOfList = async () => {
     const tasksList = document.querySelector(".tasks");
     // console.log(tasksArray);
     // console.log(tasksList);
-    populateList(tasksArray, tasksList,false);
+    populateList(tasksArray, tasksList, false);
   } catch (err) {
     console.log("Error:", err.message);
   }
