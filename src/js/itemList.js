@@ -65,6 +65,7 @@ function editItem(e) {
   if (e.target.classList.contains("edit")) {
     if (confirm("Do you want to edit this item?")) {
       let li = e.target.parentElement;
+      console.log(li)
       li.contentEditable = "true";
       window.addEventListener("keypress", e => {
         if (e.keyCode == 13) {

@@ -7,14 +7,15 @@ const router = express.Router();
 
 router.get(
   "/",
-  /*auth,*/ async (req, res) => {
-    // const user = await User.findById(req.user._id);
-    const toDoLists = await ToDoList.find(/*user*/).sort("index");
+  auth, async (req, res) => {
+    const toDoLists = await ToDoList.find({
+      userId: { $eq: req.user._id }
+    }).sort("index");
     res.send(toDoLists);
   }
 );
 
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -24,12 +25,12 @@ router.post("/", async (req, res) => {
   // console.log('-------');
   const listOfTasks = new ToDoList({
     title: req.body.title,
-    userId: user._id,
+    userId: req.user._id,
     tasks: req.body.tasks.map(task => {
       return [
         {
           name: task,
-          done: false
+          done: task.done
         }
       ];
     }),
@@ -44,7 +45,6 @@ router.put("/:id", async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
-  const user = await User.findById(req.body.userId);
   const searchedList = await ToDoList.findByIdAndUpdate(
     req.params.id,
     {
@@ -53,7 +53,7 @@ router.put("/:id", async (req, res) => {
       tasks: req.body.tasks.map(task => {
         return {
           name: task.name,
-          done: false
+          done: task.done
         };
       })
     },
@@ -75,7 +75,7 @@ router.delete("/:id", async (req, res) => {
   res.send(searchedList);
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", auth, async (req, res) => {
   const searchedList = await ToDoList.findById(req.params.id);
 
   if (!searchedList)
